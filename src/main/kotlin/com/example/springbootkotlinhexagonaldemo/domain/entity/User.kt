@@ -3,6 +3,7 @@ package com.example.springbootkotlinhexagonaldemo.domain.entity
 import com.example.springbootkotlinhexagonaldemo.domain.model.UserModification
 import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
 import com.example.springbootkotlinhexagonaldemo.domain.type.common.PositiveOrZeroInt
+import com.example.springbootkotlinhexagonaldemo.domain.type.common.plus
 import com.example.springbootkotlinhexagonaldemo.domain.type.embed.Audit
 import com.example.springbootkotlinhexagonaldemo.domain.type.embed.UserPersonalInfo
 import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
@@ -61,5 +62,10 @@ class User(
                 this.personalInfo = UserPersonalInfo(email = this.personalInfo.email, name = it)
             }
         }
+    }
+
+    fun updateMileagePoint(point: Int) {
+        if (point == 0) return
+        this.mileage.point += point
     }
 }

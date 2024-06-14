@@ -1,8 +1,8 @@
-package com.example.springbootkotlinhexagonaldemo.application.service
+package com.example.springbootkotlinhexagonaldemo.application.service.user
 
 import com.example.springbootkotlinhexagonaldemo.application.port.persistence.ReadUserPort
 import com.example.springbootkotlinhexagonaldemo.application.port.persistence.WriteUserPort
-import com.example.springbootkotlinhexagonaldemo.application.usecase.CreateUserUseCase
+import com.example.springbootkotlinhexagonaldemo.application.usecase.user.CreateUserUseCase
 import com.example.springbootkotlinhexagonaldemo.domain.entity.User
 import com.example.springbootkotlinhexagonaldemo.domain.model.UserCreation
 import org.springframework.stereotype.Service

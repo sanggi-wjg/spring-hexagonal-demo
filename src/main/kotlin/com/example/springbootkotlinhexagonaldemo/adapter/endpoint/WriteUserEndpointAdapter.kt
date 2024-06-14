@@ -2,9 +2,9 @@ package com.example.springbootkotlinhexagonaldemo.adapter.endpoint
 
 import com.example.springbootkotlinhexagonaldemo.adapter.endpoint.mapper.UserDtoMapper
 import com.example.springbootkotlinhexagonaldemo.application.port.endpoint.WriteUserEndpointPort
-import com.example.springbootkotlinhexagonaldemo.application.usecase.CreateUserUseCase
-import com.example.springbootkotlinhexagonaldemo.application.usecase.DeleteUserByIdUseCase
-import com.example.springbootkotlinhexagonaldemo.application.usecase.UpdateUserByIdUseCase
+import com.example.springbootkotlinhexagonaldemo.application.usecase.user.CreateUserUseCase
+import com.example.springbootkotlinhexagonaldemo.application.usecase.user.DeleteUserByIdUseCase
+import com.example.springbootkotlinhexagonaldemo.application.usecase.user.UpdateUserByIdUseCase
 import com.example.springbootkotlinhexagonaldemo.domain.model.UserCreation
 import com.example.springbootkotlinhexagonaldemo.domain.model.UserModification
 import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId

@@ -1,7 +1,7 @@
-package com.example.springbootkotlinhexagonaldemo.application.service
+package com.example.springbootkotlinhexagonaldemo.application.service.user
 
 import com.example.springbootkotlinhexagonaldemo.application.port.persistence.ReadUserPort
-import com.example.springbootkotlinhexagonaldemo.application.usecase.FindUserByIdUseCase
+import com.example.springbootkotlinhexagonaldemo.application.usecase.user.FindUserByIdUseCase
 import com.example.springbootkotlinhexagonaldemo.domain.entity.User
 import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
 import jakarta.persistence.EntityNotFoundException

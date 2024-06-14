@@ -1,11 +1,12 @@
 package com.example.springbootkotlinhexagonaldemo.domain.entity
 
 import com.example.springbootkotlinhexagonaldemo.domain.type.common.PositiveOrZeroInt
+import com.example.springbootkotlinhexagonaldemo.domain.type.common.plus
 import com.example.springbootkotlinhexagonaldemo.domain.type.id.MileageId
 
 class Mileage(
     val id: MileageId?,
-    val point: PositiveOrZeroInt,
+    var point: PositiveOrZeroInt,
 ) {
     constructor(
         point: PositiveOrZeroInt,

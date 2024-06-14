@@ -1,8 +1,8 @@
-package com.example.springbootkotlinhexagonaldemo.application.service
+package com.example.springbootkotlinhexagonaldemo.application.service.user
 
 import com.example.springbootkotlinhexagonaldemo.application.port.persistence.ReadUserPort
 import com.example.springbootkotlinhexagonaldemo.application.port.persistence.WriteUserPort
-import com.example.springbootkotlinhexagonaldemo.application.usecase.UpdateUserByIdUseCase
+import com.example.springbootkotlinhexagonaldemo.application.usecase.user.UpdateUserByIdUseCase
 import com.example.springbootkotlinhexagonaldemo.domain.entity.User
 import com.example.springbootkotlinhexagonaldemo.domain.model.UserModification
 import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId

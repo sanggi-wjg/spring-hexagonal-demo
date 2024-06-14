@@ -2,6 +2,7 @@ package com.example.springbootkotlinhexagonaldemo.application.service
 
 import com.example.springbootkotlinhexagonaldemo.application.port.persistence.ReadUserPort
 import com.example.springbootkotlinhexagonaldemo.application.port.persistence.WriteUserPort
+import com.example.springbootkotlinhexagonaldemo.application.service.user.UpdateUserByIdService
 import com.example.springbootkotlinhexagonaldemo.domain.entity.Mileage
 import com.example.springbootkotlinhexagonaldemo.domain.entity.User
 import com.example.springbootkotlinhexagonaldemo.domain.model.UserModification

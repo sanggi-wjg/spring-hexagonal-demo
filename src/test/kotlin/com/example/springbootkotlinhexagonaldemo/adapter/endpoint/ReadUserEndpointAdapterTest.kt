@@ -1,20 +1,11 @@
 package com.example.springbootkotlinhexagonaldemo.adapter.endpoint
 
 import com.example.springbootkotlinhexagonaldemo.adapter.endpoint.mapper.UserDtoMapper
-import com.example.springbootkotlinhexagonaldemo.adapter.persistence.mapper.UserMapper
-import com.example.springbootkotlinhexagonaldemo.application.usecase.FindAllUsersUseCase
-import com.example.springbootkotlinhexagonaldemo.application.usecase.FindUserByIdUseCase
-import com.example.springbootkotlinhexagonaldemo.domain.entity.User
-import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
-import com.example.springbootkotlinhexagonaldemo.domain.type.embed.UserPersonalInfo
-import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
-import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
+import com.example.springbootkotlinhexagonaldemo.application.usecase.user.FindAllUsersUseCase
+import com.example.springbootkotlinhexagonaldemo.application.usecase.user.FindUserByIdUseCase
 import com.example.springbootkotlinhexagonaldemo.factory.UserFactory
-import com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.response.UserResponseDto
-import com.example.springbootkotlinhexagonaldemo.infrastructure.enum.UserStatus
 import com.ninjasquad.springmockk.MockkBean
 import io.kotest.core.spec.style.FunSpec
-import io.kotest.matchers.equality.shouldBeEqualToComparingFields
 import io.kotest.matchers.shouldBe
 import io.mockk.every
 import org.springframework.boot.test.context.SpringBootTest
