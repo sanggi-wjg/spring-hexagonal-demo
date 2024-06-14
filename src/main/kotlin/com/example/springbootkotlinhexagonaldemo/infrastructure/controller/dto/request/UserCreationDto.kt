@@ -1,6 +1,8 @@
 package com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.request
 
-import com.example.springbootkotlinhexagonaldemo.domain.UserCreation
+import com.example.springbootkotlinhexagonaldemo.domain.model.UserCreation
+import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
+import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
 
 
 data class UserCreationDto(
@@ -9,6 +11,6 @@ data class UserCreationDto(
 )
 
 fun UserCreationDto.toDomain() = UserCreation(
-    email = email,
-    name = name
+    email = Email(email),
+    name = UserName(name),
 )

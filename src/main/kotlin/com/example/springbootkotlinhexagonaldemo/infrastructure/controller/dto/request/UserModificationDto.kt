@@ -1,6 +1,8 @@
 package com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.request
 
-import com.example.springbootkotlinhexagonaldemo.domain.UserModification
+import com.example.springbootkotlinhexagonaldemo.domain.model.UserModification
+import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
+import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
 import com.example.springbootkotlinhexagonaldemo.infrastructure.enum.UserStatus
 
 data class UserModificationDto(
@@ -10,7 +12,7 @@ data class UserModificationDto(
 )
 
 fun UserModificationDto.toDomain() = UserModification(
-    name = name,
-    email = email,
+    name = name?.let { UserName(it) },
+    email = email?.let { Email(it) },
     userStatus = userStatus,
 )

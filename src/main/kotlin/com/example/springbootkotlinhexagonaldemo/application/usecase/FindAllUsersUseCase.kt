@@ -1,6 +1,6 @@
 package com.example.springbootkotlinhexagonaldemo.application.usecase
 
-import com.example.springbootkotlinhexagonaldemo.domain.User
+import com.example.springbootkotlinhexagonaldemo.domain.entity.User
 
 interface FindAllUsersUseCase {
 

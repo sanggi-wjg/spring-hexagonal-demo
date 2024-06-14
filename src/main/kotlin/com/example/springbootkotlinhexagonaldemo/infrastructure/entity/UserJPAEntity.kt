@@ -7,32 +7,33 @@ import jakarta.validation.constraints.Size
 
 @Entity
 @Table(name = "user")
-open class UserEntity {
-    constructor(
-        email: String,
-        name: String,
-    ) {
-        this.email = email
-        this.name = name
-    }
-
+class UserJPAEntity(
+    id: Int?,
+    email: String,
+    name: String,
+    userStatus: UserStatus,
+) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    open var id: Int? = null
+    var id: Int? = id
+        private set
 
     @Size(max = 254)
     @NotNull
     @Column(name = "email", unique = true, nullable = false, length = 254)
-    open var email: String? = null
+    var email: String = email
+        private set
 
     @Size(max = 150)
     @NotNull
     @Column(name = "name", nullable = false, length = 150)
-    open var name: String? = null
+    var name: String = name
+        private set
 
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "user_status", nullable = false, length = 64)
-    open var userStatus: UserStatus = UserStatus.ACTIVE
+    var userStatus: UserStatus = userStatus
+        private set
 }

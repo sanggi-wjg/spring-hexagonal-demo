@@ -1,7 +1,10 @@
 package com.example.springbootkotlinhexagonaldemo.adapter.persistence
 
+import com.example.springbootkotlinhexagonaldemo.adapter.persistence.mapper.UserMapper
 import com.example.springbootkotlinhexagonaldemo.application.port.persistence.ReadUserPort
-import com.example.springbootkotlinhexagonaldemo.domain.User
+import com.example.springbootkotlinhexagonaldemo.domain.entity.User
+import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
+import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
 import com.example.springbootkotlinhexagonaldemo.infrastructure.annotations.Adapter
 import com.example.springbootkotlinhexagonaldemo.infrastructure.repository.UserRepository
 import org.springframework.data.repository.findByIdOrNull
@@ -12,16 +15,18 @@ class ReadUserAdapter(
 ) : ReadUserPort {
 
     override fun findAll(): Collection<User> {
-        return userRepository.findAll().map { User.of(it) }
-    }
-
-    override fun findById(userId: Int): User? {
-        return userRepository.findByIdOrNull(userId)?.let {
-            User.of(it)
+        return userRepository.findAll().map {
+            UserMapper.toDomain(it)
         }
     }
 
-    override fun existsByEmail(email: String): Boolean {
-        return userRepository.existsByEmail(email)
+    override fun findById(id: UserId): User? {
+        return userRepository.findByIdOrNull(id.value)?.let {
+            UserMapper.toDomain(it)
+        }
+    }
+
+    override fun existsByEmail(email: Email): Boolean {
+        return userRepository.existsByEmail(email.value)
     }
 }

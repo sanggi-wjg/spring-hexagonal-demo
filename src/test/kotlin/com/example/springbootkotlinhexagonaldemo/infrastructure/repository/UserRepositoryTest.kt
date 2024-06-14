@@ -1,6 +1,7 @@
 package com.example.springbootkotlinhexagonaldemo.infrastructure.repository
 
-import com.example.springbootkotlinhexagonaldemo.infrastructure.entity.UserEntity
+import com.example.springbootkotlinhexagonaldemo.infrastructure.entity.UserJPAEntity
+import com.example.springbootkotlinhexagonaldemo.infrastructure.enum.UserStatus
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import org.springframework.boot.test.context.SpringBootTest
@@ -16,10 +17,17 @@ class UserRepositoryTest(
 
     test("존재하는 유저에 대해 이메일로 조회할 수 있어야 한다.") {
         // given
-        val user = userRepository.save(UserEntity("snow@dev.com", "snow"))
+        val user = userRepository.save(
+            UserJPAEntity(
+                id = null,
+                email = "snow@dev.com",
+                name = "snow",
+                userStatus = UserStatus.ACTIVE
+            )
+        )
 
         // when
-        val isExists = userRepository.existsByEmail(user.email!!)
+        val isExists = userRepository.existsByEmail(user.email)
 
         // then
         isExists shouldBe true

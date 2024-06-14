@@ -1,9 +1,13 @@
 package com.example.springbootkotlinhexagonaldemo.adapter.persistence
 
-import com.example.springbootkotlinhexagonaldemo.domain.User
-import com.example.springbootkotlinhexagonaldemo.domain.UserCreation
-import com.example.springbootkotlinhexagonaldemo.domain.UserModification
-import com.example.springbootkotlinhexagonaldemo.infrastructure.entity.UserEntity
+import com.example.springbootkotlinhexagonaldemo.adapter.persistence.mapper.UserMapper
+import com.example.springbootkotlinhexagonaldemo.domain.entity.User
+import com.example.springbootkotlinhexagonaldemo.domain.model.UserModification
+import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
+import com.example.springbootkotlinhexagonaldemo.domain.type.embed.UserPersonalInfo
+import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
+import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
+import com.example.springbootkotlinhexagonaldemo.infrastructure.entity.UserJPAEntity
 import com.example.springbootkotlinhexagonaldemo.infrastructure.enum.UserStatus
 import com.example.springbootkotlinhexagonaldemo.infrastructure.repository.UserRepository
 import io.kotest.core.spec.style.FunSpec
@@ -24,49 +28,55 @@ class WriteUserAdapterTest(
 
     test("신규 유저를 생성 할 수 있어야 한다.") {
         // given
-        val userCreation = UserCreation("user_1@dev.com", "user_1")
+        val user = User(
+            email = Email("user_1@dev.com"),
+            name = UserName("user_1"),
+        )
 
         // when
-        writeUserAdapter.saveNewUser(userCreation).also {
-            // then
-            User.of(userRepository.findByIdOrNull(it.id)!!) shouldBe it
+        val saveUser = writeUserAdapter.create(user)
+
+        // then
+        userRepository.findByIdOrNull(saveUser.id!!.value)!!.also { findUser ->
+            UserMapper.toDomain(findUser).shouldBeEqualToComparingFields(saveUser)
         }
     }
 
     test("유저 정보를 변경할 수 있어야 한다.") {
         // given
-        val userEntity = userRepository.save(UserEntity("user_1@dev.com", "user_1"))
-        val userModification = UserModification("modified_user_1@dev.com", "modified_user_1", UserStatus.LEFT)
+        val userJPAEntity = userRepository.save(
+            UserJPAEntity(id = null, email = "user_1@dev.com", name = "user_11", userStatus = UserStatus.ACTIVE),
+        )
+        val userModification = UserModification(
+            UserName("modified_user_1@dev.com"), Email("modified_user_1"), UserStatus.LEFT
+        )
+
+        val user = UserMapper.toDomain(userJPAEntity)
+        user.update(userModification)
+
         val expectedUser = User(
-            id = userEntity.id!!,
-            email = userModification.email!!,
-            name = userModification.name!!,
+            id = UserId(userJPAEntity.id!!),
+            personalInfo = UserPersonalInfo(userModification.email!!, userModification.name!!),
             userStatus = userModification.userStatus!!
         )
 
-        // when
-        writeUserAdapter.updateUserById(userEntity.id!!, userModification).also {
-            // then
-            it!!.shouldBeEqualToComparingFields(expectedUser)
+        // when ~ then
+        writeUserAdapter.update(user).also {
+            it.shouldBeEqualToComparingFields(expectedUser)
         }
-    }
-
-    test("없는 유저 정보는 변경하지 않는다.") {
-        // given
-        val userModification = UserModification("modified_user_1@dev.com", "modified_user_1", UserStatus.LEFT)
-
-        // when
-        writeUserAdapter.updateUserById(0, userModification) shouldBe null
     }
 
     test("유저 삭제를 할 수 있어야 한다.") {
         // given
-        val userEntity = userRepository.save(UserEntity("user_1@dev.com", "user_1"))
+        val userJPAEntity = userRepository.save(
+            UserJPAEntity(id = null, email = "user_1@dev.com", name = "user_11", userStatus = UserStatus.ACTIVE),
+        )
+        val user = UserMapper.toDomain(userJPAEntity)
 
         // when
-        writeUserAdapter.deleteUserById(userEntity.id!!)
+        writeUserAdapter.delete(user)
 
         // then
-        userRepository.findByIdOrNull(userEntity.id) shouldBe null
+        userRepository.findByIdOrNull(userJPAEntity.id) shouldBe null
     }
 })

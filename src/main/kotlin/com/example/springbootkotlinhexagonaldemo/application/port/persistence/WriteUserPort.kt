@@ -1,14 +1,15 @@
 package com.example.springbootkotlinhexagonaldemo.application.port.persistence
 
-import com.example.springbootkotlinhexagonaldemo.domain.User
-import com.example.springbootkotlinhexagonaldemo.domain.UserCreation
-import com.example.springbootkotlinhexagonaldemo.domain.UserModification
+import com.example.springbootkotlinhexagonaldemo.domain.entity.User
+import com.example.springbootkotlinhexagonaldemo.domain.model.UserCreation
+import com.example.springbootkotlinhexagonaldemo.domain.model.UserModification
+import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
 
 interface WriteUserPort {
 
-    fun saveNewUser(userCreation: UserCreation): User
+    fun create(user: User): User
 
-    fun updateUserById(userId: Int, userModification: UserModification): User?
+    fun update(user: User): User
 
-    fun deleteUserById(userId: Int)
+    fun delete(user: User)
 }

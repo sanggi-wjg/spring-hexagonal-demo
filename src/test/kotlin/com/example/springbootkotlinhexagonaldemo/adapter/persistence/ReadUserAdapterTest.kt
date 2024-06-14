@@ -1,7 +1,10 @@
 package com.example.springbootkotlinhexagonaldemo.adapter.persistence
 
-import com.example.springbootkotlinhexagonaldemo.domain.User
-import com.example.springbootkotlinhexagonaldemo.infrastructure.entity.UserEntity
+import com.example.springbootkotlinhexagonaldemo.adapter.persistence.mapper.UserMapper
+import com.example.springbootkotlinhexagonaldemo.domain.entity.User
+import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
+import com.example.springbootkotlinhexagonaldemo.infrastructure.entity.UserJPAEntity
+import com.example.springbootkotlinhexagonaldemo.infrastructure.enum.UserStatus
 import com.example.springbootkotlinhexagonaldemo.infrastructure.repository.UserRepository
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.equality.shouldBeEqualToComparingFields
@@ -20,50 +23,50 @@ class ReadUserAdapterTest(
 
     test("유저 전체 조회할 수 있어야 한다.") {
         // given
-        val users = userRepository.saveAll(
+        val userJPAEntities = userRepository.saveAll(
             listOf(
-                UserEntity("user_1@dev.com", "user_1"),
-                UserEntity("user_2@dev.com", "user_2"),
-                UserEntity("user_3@dev.com", "user_3"),
+                UserJPAEntity(id = null, email = "user_1@dev.com", name = "user_11", userStatus = UserStatus.ACTIVE),
+                UserJPAEntity(id = null, email = "user_2@dev.com", name = "user_22", userStatus = UserStatus.ACTIVE),
+                UserJPAEntity(id = null, email = "user_3@dev.com", name = "user_33", userStatus = UserStatus.LEFT),
             )
-        ).map { User.of(it) }
+        )
+        val users = userJPAEntities.map { UserMapper.toDomain(it) }
 
-        // when
-        readUserAdapter.findAll().also {
-            // then
-            it.size shouldBe 3
-            it.forEach { findUser ->
-                findUser.shouldBeEqualToComparingFields(users.first { findUser.email == it.email })
+        // when ~ then
+        readUserAdapter.findAll().also { findUsers ->
+            findUsers.size shouldBe 3
+            findUsers.forEach { user ->
+                val expectedUser = users.first { user.personalInfo.email == it.personalInfo.email }
+                user.shouldBeEqualToComparingFields(expectedUser)
             }
         }
     }
 
     test("유저 ID로 조회할 수 있어야 한디.") {
         // given
-        val users = userRepository.saveAll(
+        val userJPAEntities = userRepository.saveAll(
             listOf(
-                UserEntity("user_1@dev.com", "user_1"),
-                UserEntity("user_2@dev.com", "user_2"),
-                UserEntity("user_3@dev.com", "user_3"),
+                UserJPAEntity(id = null, email = "user_1@dev.com", name = "user_11", userStatus = UserStatus.ACTIVE),
+                UserJPAEntity(id = null, email = "user_2@dev.com", name = "user_22", userStatus = UserStatus.ACTIVE),
+                UserJPAEntity(id = null, email = "user_3@dev.com", name = "user_33", userStatus = UserStatus.LEFT),
             )
-        ).map { User.of(it) }
-        val user = users.first()
+        )
+        val users = userJPAEntities.map { UserMapper.toDomain(it) }
+        val user = users.last()
 
-        // when
-        readUserAdapter.findById(user.id).also {
-            // then
-            it!!.shouldBeEqualToComparingFields(user)
-        }
-        // then
-        readUserAdapter.findById(0) shouldBe null
+        // when ~ then
+        readUserAdapter.findById(user.id!!)!!.shouldBeEqualToComparingFields(user)
     }
 
     test("유저 이메일 존재 여부를 조회할 수 있어야 한다.") {
         // given
-        val user = userRepository.save(UserEntity("user_1@dev.com", "user_1"))
+        val userJPAEntity = userRepository.save(
+            UserJPAEntity(id = null, email = "user_1@dev.com", name = "user_11", userStatus = UserStatus.ACTIVE),
+        )
+        val user = UserMapper.toDomain(userJPAEntity)
 
         // when
-        readUserAdapter.existsByEmail(user.email!!) shouldBe true
-        readUserAdapter.existsByEmail("who_am_i@dev.com") shouldBe false
+        readUserAdapter.existsByEmail(user.personalInfo.email) shouldBe true
+        readUserAdapter.existsByEmail(Email("who_am_i@dev.com")) shouldBe false
     }
 })

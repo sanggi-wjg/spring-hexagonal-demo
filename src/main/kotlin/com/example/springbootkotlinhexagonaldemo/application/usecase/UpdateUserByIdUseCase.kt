@@ -1,9 +1,10 @@
 package com.example.springbootkotlinhexagonaldemo.application.usecase
 
-import com.example.springbootkotlinhexagonaldemo.domain.User
-import com.example.springbootkotlinhexagonaldemo.domain.UserModification
+import com.example.springbootkotlinhexagonaldemo.domain.entity.User
+import com.example.springbootkotlinhexagonaldemo.domain.model.UserModification
+import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
 
 interface UpdateUserByIdUseCase {
 
-    fun updateUserById(userId: Int, userModification: UserModification): User
+    fun updateUserById(id: UserId, userModification: UserModification): User
 }

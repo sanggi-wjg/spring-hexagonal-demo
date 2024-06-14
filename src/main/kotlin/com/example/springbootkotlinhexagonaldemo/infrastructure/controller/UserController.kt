@@ -1,7 +1,7 @@
 package com.example.springbootkotlinhexagonaldemo.infrastructure.controller
 
-import com.example.springbootkotlinhexagonaldemo.application.port.endpoint.ReadUserEndpointPort
 import com.example.springbootkotlinhexagonaldemo.application.port.endpoint.WriteUserEndpointPort
+import com.example.springbootkotlinhexagonaldemo.application.port.endpoint.ReadUserEndpointPort
 import com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.request.UserCreationDto
 import com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.request.UserModificationDto
 import com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.request.toDomain
@@ -9,15 +9,7 @@ import com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.r
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PatchMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.ResponseStatus
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/users")
