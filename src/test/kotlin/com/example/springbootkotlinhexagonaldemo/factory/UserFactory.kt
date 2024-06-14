@@ -1,4 +1,4 @@
-package com.example.springbootkotlinhexagonaldemo.adapter.persistence.mapper
+package com.example.springbootkotlinhexagonaldemo.factory
 
 import com.example.springbootkotlinhexagonaldemo.domain.entity.Mileage
 import com.example.springbootkotlinhexagonaldemo.domain.entity.User
@@ -11,41 +11,49 @@ import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
 import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
 import com.example.springbootkotlinhexagonaldemo.infrastructure.entity.MileageJPAEntity
 import com.example.springbootkotlinhexagonaldemo.infrastructure.entity.UserJPAEntity
+import com.example.springbootkotlinhexagonaldemo.infrastructure.enum.UserStatus
+import java.time.Instant
 
-object UserMapper {
+object UserFactory {
+    private var id = 0
 
-    fun toDomain(user: UserJPAEntity): User {
+    fun generalUser(): User {
+        id++
         return User(
-            id = UserId(user.id!!),
+            id = UserId(id),
             personalInfo = UserPersonalInfo(
-                email = Email(user.email),
-                name = UserName(user.name),
+                name = UserName("user_$id"),
+                email = Email("user_$id@dev.com")
             ),
-            userStatus = user.userStatus,
+            userStatus = UserStatus.ACTIVE,
             audit = Audit(
-                createdAt = user.createdAt,
-                updatedAt = user.updatedAt,
+                createdAt = Instant.now(),
+                updatedAt = Instant.now()
             ),
-            mileage = user.mileage.let {
-                Mileage(
-                    id = MileageId(it.id!!),
-                    point = it.point.toPositiveOrZeroInt(),
-                )
-            }
+            mileage = Mileage(
+                id = MileageId(id),
+                point = 0.toPositiveOrZeroInt()
+            )
         )
     }
 
-    fun toJPAEntity(user: User): UserJPAEntity {
+    fun User.userStatus(userStatus: UserStatus): User {
+        this.userStatus = userStatus
+        return this
+    }
+
+    fun generalUserJPAEntity(): UserJPAEntity {
+        id++
         return UserJPAEntity(
-            id = user.id?.value,
-            email = user.personalInfo.email.value,
-            name = user.personalInfo.name.value,
-            userStatus = user.userStatus,
-            createdAt = user.audit.createdAt,
-            updatedAt = user.audit.updatedAt,
+            id = null,
+            email = "user_$id@dev.com",
+            name = "user_$id",
+            userStatus = UserStatus.ACTIVE,
+            createdAt = Instant.now(),
+            updatedAt = Instant.now(),
             mileage = MileageJPAEntity(
-                id = user.mileage.id?.value,
-                point = user.mileage.point.value
+                id = null,
+                point = 0
             )
         )
     }

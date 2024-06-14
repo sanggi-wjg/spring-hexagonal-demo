@@ -8,4 +8,4 @@ data class PositiveOrZeroInt(
     }
 }
 
-fun Int.toPositiveInt() = PositiveOrZeroInt(this)
+fun Int.toPositiveOrZeroInt() = PositiveOrZeroInt(this)

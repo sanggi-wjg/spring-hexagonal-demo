@@ -6,6 +6,7 @@ import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
 import com.example.springbootkotlinhexagonaldemo.domain.type.embed.UserPersonalInfo
 import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
 import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
+import com.example.springbootkotlinhexagonaldemo.factory.UserFactory
 import com.example.springbootkotlinhexagonaldemo.infrastructure.enum.UserStatus
 import com.ninjasquad.springmockk.MockkBean
 import io.kotest.assertions.throwables.shouldThrow
@@ -39,11 +40,7 @@ class FindUserByIdServiceTest(
 
     test("유저 ID 조회할 수 있어야 한다.") {
         // given
-        val expected = User(
-            id = UserId(1),
-            personalInfo = UserPersonalInfo(Email("user_1@dev.com"), UserName("user_11")),
-            userStatus = UserStatus.ACTIVE
-        )
+        val expected = UserFactory.generalUser()
 
         // mock
         every {

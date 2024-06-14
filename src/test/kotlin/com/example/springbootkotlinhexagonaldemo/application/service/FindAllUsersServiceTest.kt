@@ -6,6 +6,7 @@ import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
 import com.example.springbootkotlinhexagonaldemo.domain.type.embed.UserPersonalInfo
 import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
 import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
+import com.example.springbootkotlinhexagonaldemo.factory.UserFactory
 import com.example.springbootkotlinhexagonaldemo.infrastructure.enum.UserStatus
 import com.ninjasquad.springmockk.MockkBean
 import io.kotest.core.spec.style.FunSpec
@@ -22,8 +23,8 @@ class FindAllUsersServiceTest(
     test("전체 유저 조회를 할 수 있어야 한다.") {
         // given
         val expected = listOf(
-            User(id = UserId(1), personalInfo = UserPersonalInfo(Email("user_1@dev.com"), UserName("user_11")), userStatus = UserStatus.ACTIVE),
-            User(id = UserId(2), personalInfo = UserPersonalInfo(Email("user_2@dev.com"), UserName("user_22")), userStatus = UserStatus.ACTIVE),
+            UserFactory.generalUser(),
+            UserFactory.generalUser(),
         )
 
         // mock

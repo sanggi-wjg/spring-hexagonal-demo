@@ -1,9 +1,11 @@
 package com.example.springbootkotlinhexagonaldemo.infrastructure.entity
 
+import com.example.springbootkotlinhexagonaldemo.domain.entity.Mileage
 import com.example.springbootkotlinhexagonaldemo.infrastructure.enum.UserStatus
 import jakarta.persistence.*
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Size
+import java.time.Instant
 
 @Entity
 @Table(name = "user")
@@ -12,6 +14,9 @@ class UserJPAEntity(
     email: String,
     name: String,
     userStatus: UserStatus,
+    createdAt: Instant,
+    updatedAt: Instant,
+    mileage: MileageJPAEntity,
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,4 +41,16 @@ class UserJPAEntity(
     @Column(name = "user_status", nullable = false, length = 64)
     var userStatus: UserStatus = userStatus
         private set
+
+    @NotNull
+    @Column(name = "created_at", nullable = false)
+    var createdAt: Instant = createdAt
+
+    @NotNull
+    @Column(name = "updated_at", nullable = false)
+    var updatedAt: Instant = updatedAt
+
+    @OneToOne
+    @JoinColumn(name = "mileage_id")
+    var mileage: MileageJPAEntity = mileage
 }

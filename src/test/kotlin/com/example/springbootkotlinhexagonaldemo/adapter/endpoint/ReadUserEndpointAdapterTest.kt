@@ -1,6 +1,7 @@
 package com.example.springbootkotlinhexagonaldemo.adapter.endpoint
 
 import com.example.springbootkotlinhexagonaldemo.adapter.endpoint.mapper.UserDtoMapper
+import com.example.springbootkotlinhexagonaldemo.adapter.persistence.mapper.UserMapper
 import com.example.springbootkotlinhexagonaldemo.application.usecase.FindAllUsersUseCase
 import com.example.springbootkotlinhexagonaldemo.application.usecase.FindUserByIdUseCase
 import com.example.springbootkotlinhexagonaldemo.domain.entity.User
@@ -8,6 +9,7 @@ import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
 import com.example.springbootkotlinhexagonaldemo.domain.type.embed.UserPersonalInfo
 import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
 import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
+import com.example.springbootkotlinhexagonaldemo.factory.UserFactory
 import com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.response.UserResponseDto
 import com.example.springbootkotlinhexagonaldemo.infrastructure.enum.UserStatus
 import com.ninjasquad.springmockk.MockkBean
@@ -27,16 +29,8 @@ class ReadUserEndpointAdapterTest(
     test("유저들을 조회할 수 있어야 한다.") {
         // given
         val users = listOf(
-            User(
-                id = UserId(1),
-                personalInfo = UserPersonalInfo(name = UserName("user_11"), email = Email("user_11@dev.com")),
-                userStatus = UserStatus.ACTIVE,
-            ),
-            User(
-                id = UserId(2),
-                personalInfo = UserPersonalInfo(name = UserName("user_22"), email = Email("user_22@dev.com")),
-                userStatus = UserStatus.ACTIVE,
-            ),
+            UserFactory.generalUser(),
+            UserFactory.generalUser(),
         )
         val expected = users.map { UserDtoMapper.toUserResponseDto(it) }
 
@@ -54,11 +48,7 @@ class ReadUserEndpointAdapterTest(
 
     test("유저 ID로 조회할 수 있어야 한다.") {
         // given
-        val user = User(
-            id = UserId(1),
-            personalInfo = UserPersonalInfo(name = UserName("user_11"), email = Email("user_11@dev.com")),
-            userStatus = UserStatus.ACTIVE,
-        )
+        val user = UserFactory.generalUser()
         val expected = UserDtoMapper.toUserResponseDto(user)
 
         // mock

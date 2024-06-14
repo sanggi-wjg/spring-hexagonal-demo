@@ -3,8 +3,11 @@ package com.example.springbootkotlinhexagonaldemo.adapter.persistence
 import com.example.springbootkotlinhexagonaldemo.adapter.persistence.mapper.UserMapper
 import com.example.springbootkotlinhexagonaldemo.domain.entity.User
 import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
+import com.example.springbootkotlinhexagonaldemo.factory.UserFactory
+import com.example.springbootkotlinhexagonaldemo.factory.UserFactory.userStatus
 import com.example.springbootkotlinhexagonaldemo.infrastructure.entity.UserJPAEntity
 import com.example.springbootkotlinhexagonaldemo.infrastructure.enum.UserStatus
+import com.example.springbootkotlinhexagonaldemo.infrastructure.repository.MileageRepository
 import com.example.springbootkotlinhexagonaldemo.infrastructure.repository.UserRepository
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.equality.shouldBeEqualToComparingFields
@@ -14,6 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest
 @SpringBootTest
 class ReadUserAdapterTest(
     private val userRepository: UserRepository,
+    private val mileageRepository: MileageRepository,
     private val readUserAdapter: ReadUserAdapter,
 ) : FunSpec({
 
@@ -25,9 +29,9 @@ class ReadUserAdapterTest(
         // given
         val userJPAEntities = userRepository.saveAll(
             listOf(
-                UserJPAEntity(id = null, email = "user_1@dev.com", name = "user_11", userStatus = UserStatus.ACTIVE),
-                UserJPAEntity(id = null, email = "user_2@dev.com", name = "user_22", userStatus = UserStatus.ACTIVE),
-                UserJPAEntity(id = null, email = "user_3@dev.com", name = "user_33", userStatus = UserStatus.LEFT),
+                UserFactory.generalUserJPAEntity().also { mileageRepository.save(it.mileage) },
+                UserFactory.generalUserJPAEntity().also { mileageRepository.save(it.mileage) },
+                UserFactory.generalUserJPAEntity().also { mileageRepository.save(it.mileage) },
             )
         )
         val users = userJPAEntities.map { UserMapper.toDomain(it) }
@@ -46,9 +50,9 @@ class ReadUserAdapterTest(
         // given
         val userJPAEntities = userRepository.saveAll(
             listOf(
-                UserJPAEntity(id = null, email = "user_1@dev.com", name = "user_11", userStatus = UserStatus.ACTIVE),
-                UserJPAEntity(id = null, email = "user_2@dev.com", name = "user_22", userStatus = UserStatus.ACTIVE),
-                UserJPAEntity(id = null, email = "user_3@dev.com", name = "user_33", userStatus = UserStatus.LEFT),
+                UserFactory.generalUserJPAEntity().also { mileageRepository.save(it.mileage) },
+                UserFactory.generalUserJPAEntity().also { mileageRepository.save(it.mileage) },
+                UserFactory.generalUserJPAEntity().also { mileageRepository.save(it.mileage) },
             )
         )
         val users = userJPAEntities.map { UserMapper.toDomain(it) }
@@ -61,7 +65,7 @@ class ReadUserAdapterTest(
     test("유저 이메일 존재 여부를 조회할 수 있어야 한다.") {
         // given
         val userJPAEntity = userRepository.save(
-            UserJPAEntity(id = null, email = "user_1@dev.com", name = "user_11", userStatus = UserStatus.ACTIVE),
+            UserFactory.generalUserJPAEntity().also { mileageRepository.save(it.mileage) },
         )
         val user = UserMapper.toDomain(userJPAEntity)
 

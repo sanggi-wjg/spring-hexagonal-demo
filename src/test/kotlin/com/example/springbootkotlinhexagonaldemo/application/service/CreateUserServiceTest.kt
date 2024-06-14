@@ -8,6 +8,7 @@ import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
 import com.example.springbootkotlinhexagonaldemo.domain.type.embed.UserPersonalInfo
 import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
 import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
+import com.example.springbootkotlinhexagonaldemo.factory.UserFactory
 import com.example.springbootkotlinhexagonaldemo.infrastructure.enum.UserStatus
 import com.ninjasquad.springmockk.MockkBean
 import io.kotest.assertions.throwables.shouldThrow
@@ -27,11 +28,7 @@ class CreateUserServiceTest(
     test("유저를 생성할 수 있어야 한다.") {
         // given
         val userCreation = UserCreation(name = UserName("홍길동"), email = Email("JhZpR@example.com"))
-        val userMock = User(
-            id = UserId(1),
-            personalInfo = UserPersonalInfo(name = userCreation.name, email = userCreation.email),
-            userStatus = UserStatus.ACTIVE
-        )
+        val userMock = UserFactory.generalUser()
 
         // mock
         every {

@@ -9,6 +9,7 @@ import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
 import com.example.springbootkotlinhexagonaldemo.domain.type.embed.UserPersonalInfo
 import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
 import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
+import com.example.springbootkotlinhexagonaldemo.factory.UserFactory
 import com.example.springbootkotlinhexagonaldemo.infrastructure.enum.UserStatus
 import com.ninjasquad.springmockk.MockkBean
 import io.kotest.assertions.throwables.shouldThrow
@@ -27,11 +28,7 @@ class DeleteUserByIdServiceTest(
 
     test("유저 정보를 수정할 수 있어야 한다.") {
         // given
-        val userMock = User(
-            id = UserId(1),
-            personalInfo = UserPersonalInfo(name = UserName("엥"), email = Email("dev@dev.com")),
-            userStatus = UserStatus.ACTIVE,
-        )
+        val userMock = UserFactory.generalUser()
 
         // mock
         every {

@@ -1,14 +1,17 @@
 package com.example.springbootkotlinhexagonaldemo.infrastructure.repository
 
+import com.example.springbootkotlinhexagonaldemo.infrastructure.entity.MileageJPAEntity
 import com.example.springbootkotlinhexagonaldemo.infrastructure.entity.UserJPAEntity
 import com.example.springbootkotlinhexagonaldemo.infrastructure.enum.UserStatus
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import org.springframework.boot.test.context.SpringBootTest
+import java.time.Instant
 
 @SpringBootTest
 class UserRepositoryTest(
     private val userRepository: UserRepository,
+    private val mileageRepository: MileageRepository,
 ) : FunSpec({
 
     beforeEach {
@@ -22,8 +25,16 @@ class UserRepositoryTest(
                 id = null,
                 email = "snow@dev.com",
                 name = "snow",
-                userStatus = UserStatus.ACTIVE
-            )
+                userStatus = UserStatus.ACTIVE,
+                createdAt = Instant.now(),
+                updatedAt = Instant.now(),
+                mileage = MileageJPAEntity(
+                    id = null,
+                    point = 0
+                )
+            ).also {
+                mileageRepository.save(it.mileage)
+            }
         )
 
         // when
