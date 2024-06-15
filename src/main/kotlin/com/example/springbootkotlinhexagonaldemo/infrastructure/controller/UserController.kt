@@ -8,6 +8,7 @@ import com.example.springbootkotlinhexagonaldemo.application.usecase.user.ReadUs
 import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
 import com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.request.UserCreationDto
 import com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.request.UserModificationDto
+import com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.response.UserDetailResponseDto
 import com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.response.UserResponseDto
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
@@ -42,7 +43,7 @@ class UserController(
         )
 
         return ResponseEntity(
-            readUserEndpointPort.getAllUsers(query),
+            readUserEndpointPort.readUsers(query),
             HttpStatus.OK,
         )
     }
@@ -50,13 +51,13 @@ class UserController(
     @GetMapping("/{userId}")
     fun getUserById(
         @PathVariable("userId") userId: Int,
-    ): ResponseEntity<UserResponseDto> {
+    ): ResponseEntity<UserDetailResponseDto> {
         val query = ReadUserByIdUseCase.Query(
             UserId(userId),
         )
 
         return ResponseEntity(
-            readUserEndpointPort.getUserById(query),
+            readUserEndpointPort.readUserById(query),
             HttpStatus.OK
         )
     }
@@ -69,7 +70,7 @@ class UserController(
         val command = userModificationDto.toUpdateUserByIdUseCaseCommand(userId)
 
         return ResponseEntity(
-            writeUserEndpointPort.modifyUserById(command),
+            writeUserEndpointPort.updateUserById(command),
             HttpStatus.OK
         )
     }
@@ -82,7 +83,7 @@ class UserController(
             UserId(userId),
         )
 
-        writeUserEndpointPort.removeUserById(command)
+        writeUserEndpointPort.deleteUserById(command)
         return ResponseEntity(HttpStatus.NO_CONTENT)
     }
 }

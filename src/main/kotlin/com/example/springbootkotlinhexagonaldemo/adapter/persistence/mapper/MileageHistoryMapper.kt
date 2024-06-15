@@ -11,8 +11,8 @@ object MileageHistoryMapper {
     fun toDomain(mileageHistory: MileageHistoryJPAEntity): MileageHistory {
         return MileageHistory(
             id = MileageHistoryId(mileageHistory.id!!),
-            beforeMileagePoint = mileageHistory.beforeMileagePoint.toPositiveOrZeroInt(),
-            afterMileagePoint = mileageHistory.afterMileagePoint.toPositiveOrZeroInt(),
+            beforePoint = mileageHistory.beforePoint.toPositiveOrZeroInt(),
+            afterPoint = mileageHistory.afterPoint.toPositiveOrZeroInt(),
             point = mileageHistory.point,
             message = mileageHistory.message,
             audit = Audit(
@@ -26,8 +26,8 @@ object MileageHistoryMapper {
     fun toJPAEntity(mileageHistory: MileageHistory): MileageHistoryJPAEntity {
         return MileageHistoryJPAEntity(
             id = mileageHistory.id?.value,
-            beforeMileagePoint = mileageHistory.beforeMileagePoint.value,
-            afterMileagePoint = mileageHistory.afterMileagePoint.value,
+            beforePoint = mileageHistory.beforePoint.value,
+            afterPoint = mileageHistory.afterPoint.value,
             point = mileageHistory.point,
             message = mileageHistory.message,
             createdAt = mileageHistory.audit.createdAt,

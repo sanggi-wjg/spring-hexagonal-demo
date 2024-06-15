@@ -9,8 +9,8 @@ import java.time.Instant
 @Table(name = "mileage_history")
 class MileageHistoryJPAEntity(
     id: Int?,
-    beforeMileagePoint: Int,
-    afterMileagePoint: Int,
+    beforePoint: Int,
+    afterPoint: Int,
     point: Int,
     message: String?,
     createdAt: Instant,
@@ -24,13 +24,13 @@ class MileageHistoryJPAEntity(
         private set
 
     @NotNull
-    @Column(name = "before_mileage_point", nullable = false)
-    var beforeMileagePoint: Int = beforeMileagePoint
+    @Column(name = "before_point", nullable = false)
+    var beforePoint: Int = beforePoint
         private set
 
     @NotNull
-    @Column(name = "after_mileage_point", nullable = false)
-    var afterMileagePoint: Int = afterMileagePoint
+    @Column(name = "after_point", nullable = false)
+    var afterPoint: Int = afterPoint
         private set
 
 

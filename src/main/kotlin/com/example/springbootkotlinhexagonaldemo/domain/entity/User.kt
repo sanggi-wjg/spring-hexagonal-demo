@@ -51,13 +51,14 @@ class User(
     fun copy(
         personalInfo: UserPersonalInfo? = null,
         userStatus: UserStatus? = null,
+        audit: Audit? = null,
         mileage: Mileage? = null,
         mileageHistories: Set<MileageHistory>? = null
     ) = User(
         id = this.id,
         personalInfo = personalInfo ?: this.personalInfo,
         userStatus = userStatus ?: this.userStatus,
-        audit = this.audit,
+        audit = audit ?: this.audit,
         mileage = mileage ?: this.mileage,
         mileageHistories = mileageHistories ?: this.mileageHistories
     )
@@ -80,11 +81,14 @@ class User(
         }
 
         return this.copy(
-            personalInfo = UserPersonalInfo(
+            personalInfo = this.personalInfo.copy(
                 email = inputEmail ?: this.personalInfo.email,
                 name = inputName ?: this.personalInfo.name
             ),
-            userStatus = inputUserStatus ?: this.userStatus
+            userStatus = inputUserStatus ?: this.userStatus,
+            audit = this.audit.copy(
+                updatedAt = Instant.now(),
+            )
         )
     }
 

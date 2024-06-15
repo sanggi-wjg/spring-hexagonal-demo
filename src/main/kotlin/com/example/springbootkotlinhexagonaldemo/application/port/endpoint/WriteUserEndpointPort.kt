@@ -9,7 +9,7 @@ interface WriteUserEndpointPort {
 
     fun createUser(command: CreateUserUseCase.Command): UserResponseDto
 
-    fun modifyUserById(command: UpdateUserByIdUseCase.Command): UserResponseDto
+    fun updateUserById(command: UpdateUserByIdUseCase.Command): UserResponseDto
 
-    fun removeUserById(command: DeleteUserByIdUseCase.Command): Boolean
+    fun deleteUserById(command: DeleteUserByIdUseCase.Command): Boolean
 }

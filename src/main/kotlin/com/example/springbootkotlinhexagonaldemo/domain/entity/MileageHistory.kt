@@ -8,8 +8,8 @@ import java.time.Instant
 
 class MileageHistory(
     val id: MileageHistoryId?,
-    val beforeMileagePoint: PositiveOrZeroInt,
-    val afterMileagePoint: PositiveOrZeroInt,
+    val beforePoint: PositiveOrZeroInt,
+    val afterPoint: PositiveOrZeroInt,
     val point: Int,
     val message: String?,
     val audit: Audit,
@@ -22,8 +22,8 @@ class MileageHistory(
         mileage: Mileage,
     ) : this(
         id = null,
-        beforeMileagePoint = currentPoint,
-        afterMileagePoint = currentPoint.plus(inputPoint),
+        beforePoint = currentPoint,
+        afterPoint = currentPoint.plus(inputPoint),
         point = inputPoint,
         message = message,
         audit = Audit(

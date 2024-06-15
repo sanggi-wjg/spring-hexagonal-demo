@@ -29,8 +29,8 @@ class ReadUsersServiceTest(
             userIds = null
         )
         val userFixtures = listOf(
-            UserFactory.create(),
-            UserFactory.create(),
+            UserFactory.entity(),
+            UserFactory.entity(),
         )
 
         // mock

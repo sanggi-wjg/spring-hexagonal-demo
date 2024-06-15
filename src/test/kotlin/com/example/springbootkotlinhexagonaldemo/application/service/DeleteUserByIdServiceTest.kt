@@ -20,7 +20,7 @@ class DeleteUserByIdServiceTest(
 
     test("유저 정보를 삭제할 수 있어야 한다.") {
         // given
-        val userFixture = UserFactory.create()
+        val userFixture = UserFactory.entity()
         val command = DeleteUserByIdUseCase.Command(userFixture.id!!)
 
         // mock

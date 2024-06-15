@@ -21,13 +21,13 @@ class WriteUserEndpointAdapter(
         }
     }
 
-    override fun modifyUserById(command: UpdateUserByIdUseCase.Command): UserResponseDto {
+    override fun updateUserById(command: UpdateUserByIdUseCase.Command): UserResponseDto {
         return updateUserByIdUseCase.updateUserById(command).let {
             UserDtoMapper.toUserResponseDto(it)
         }
     }
 
-    override fun removeUserById(command: DeleteUserByIdUseCase.Command): Boolean {
+    override fun deleteUserById(command: DeleteUserByIdUseCase.Command): Boolean {
         return deleteUserByIdUseCase.deleteUserById(command)
     }
 }
