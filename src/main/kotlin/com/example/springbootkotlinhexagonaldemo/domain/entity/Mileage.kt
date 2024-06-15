@@ -2,17 +2,16 @@ package com.example.springbootkotlinhexagonaldemo.domain.entity
 
 import com.example.springbootkotlinhexagonaldemo.domain.type.common.PositiveOrZeroInt
 import com.example.springbootkotlinhexagonaldemo.domain.type.common.plus
+import com.example.springbootkotlinhexagonaldemo.domain.type.common.toPositiveOrZeroInt
 import com.example.springbootkotlinhexagonaldemo.domain.type.id.MileageId
 
 class Mileage(
     val id: MileageId?,
     var point: PositiveOrZeroInt,
 ) {
-    constructor(
-        point: PositiveOrZeroInt,
-    ) : this(
+    constructor() : this(
         id = null,
-        point = point
+        point = 0.toPositiveOrZeroInt()
     )
 
     override fun equals(other: Any?): Boolean {

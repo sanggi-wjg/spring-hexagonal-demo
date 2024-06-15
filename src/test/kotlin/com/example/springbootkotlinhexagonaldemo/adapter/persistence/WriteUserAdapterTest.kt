@@ -1,5 +1,6 @@
 package com.example.springbootkotlinhexagonaldemo.adapter.persistence
 
+import com.example.springbootkotlinhexagonaldemo.adapter.persistence.mapper.MileageMapper
 import com.example.springbootkotlinhexagonaldemo.adapter.persistence.mapper.UserMapper
 import com.example.springbootkotlinhexagonaldemo.domain.entity.Mileage
 import com.example.springbootkotlinhexagonaldemo.domain.entity.User
@@ -12,13 +13,15 @@ import com.example.springbootkotlinhexagonaldemo.domain.type.id.MileageId
 import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
 import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
 import com.example.springbootkotlinhexagonaldemo.factory.UserFactory
-import com.example.springbootkotlinhexagonaldemo.infrastructure.entity.UserJPAEntity
+import com.example.springbootkotlinhexagonaldemo.infrastructure.entity.MileageJPAEntity
 import com.example.springbootkotlinhexagonaldemo.infrastructure.enum.UserStatus
 import com.example.springbootkotlinhexagonaldemo.infrastructure.repository.MileageRepository
 import com.example.springbootkotlinhexagonaldemo.infrastructure.repository.UserRepository
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.equality.shouldBeEqualToComparingFields
+import io.kotest.matchers.equality.shouldBeEqualToIgnoringFields
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldNotBe
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.repository.findByIdOrNull
 
@@ -36,10 +39,14 @@ class WriteUserAdapterTest(
 
     test("신규 유저를 생성 할 수 있어야 한다.") {
         // given
+        val mileageJPAEntity = mileageRepository.save(
+            MileageJPAEntity(id = null, point = 0)
+        )
         val user = User(
             email = Email("new@dev.com"),
             name = UserName("new_user_1"),
         )
+        user.mileage = MileageMapper.toDomain(mileageJPAEntity)
 
         // when
         val saveUser = writeUserAdapter.create(user)
@@ -79,7 +86,12 @@ class WriteUserAdapterTest(
 
         // when ~ then
         writeUserAdapter.update(user).also {
-            it.shouldBeEqualToComparingFields(expectedUser)
+            it.shouldBeEqualToIgnoringFields(
+                expectedUser,
+                User::audit
+            )
+            it.audit.createdAt shouldBe expectedUser.audit.createdAt
+            it.audit.updatedAt shouldNotBe expectedUser.audit.updatedAt
         }
     }
 

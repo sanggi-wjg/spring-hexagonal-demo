@@ -1,18 +1,18 @@
 package com.example.springbootkotlinhexagonaldemo.infrastructure.entity
 
-import com.example.springbootkotlinhexagonaldemo.infrastructure.enum.UserStatus
 import jakarta.persistence.*
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Size
 import java.time.Instant
 
 @Entity
-@Table(name = "user")
-class UserJPAEntity(
+@Table(name = "mileage_history")
+class MileageHistoryJPAEntity(
     id: Int?,
-    email: String,
-    name: String,
-    userStatus: UserStatus,
+    beforeMileagePoint: Int,
+    afterMileagePoint: Int,
+    point: Int,
+    message: String?,
     createdAt: Instant,
     updatedAt: Instant,
     mileage: MileageJPAEntity,
@@ -23,22 +23,25 @@ class UserJPAEntity(
     var id: Int? = id
         private set
 
+    @NotNull
+    @Column(name = "before_mileage_point", nullable = false)
+    var beforeMileagePoint: Int = beforeMileagePoint
+        private set
+
+    @NotNull
+    @Column(name = "after_mileage_point", nullable = false)
+    var afterMileagePoint: Int = afterMileagePoint
+        private set
+
+
+    @NotNull
+    @Column(name = "point", nullable = false)
+    var point: Int = point
+        private set
+
     @Size(max = 254)
-    @NotNull
-    @Column(name = "email", unique = true, nullable = false, length = 254)
-    var email: String = email
-        private set
-
-    @Size(max = 150)
-    @NotNull
-    @Column(name = "name", nullable = false, length = 150)
-    var name: String = name
-        private set
-
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    @Column(name = "user_status", nullable = false, length = 64)
-    var userStatus: UserStatus = userStatus
+    @Column(name = "message", length = 254)
+    var message: String? = message
         private set
 
     @NotNull
@@ -51,7 +54,7 @@ class UserJPAEntity(
     var updatedAt: Instant = updatedAt
         private set
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "mileage_id")
     var mileage: MileageJPAEntity = mileage
         private set

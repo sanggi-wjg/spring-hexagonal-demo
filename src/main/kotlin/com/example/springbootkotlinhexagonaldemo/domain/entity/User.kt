@@ -4,6 +4,7 @@ import com.example.springbootkotlinhexagonaldemo.domain.model.UserModification
 import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
 import com.example.springbootkotlinhexagonaldemo.domain.type.common.PositiveOrZeroInt
 import com.example.springbootkotlinhexagonaldemo.domain.type.common.plus
+import com.example.springbootkotlinhexagonaldemo.domain.type.common.toPositiveOrZeroInt
 import com.example.springbootkotlinhexagonaldemo.domain.type.embed.Audit
 import com.example.springbootkotlinhexagonaldemo.domain.type.embed.UserPersonalInfo
 import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
@@ -11,6 +12,7 @@ import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
 import com.example.springbootkotlinhexagonaldemo.infrastructure.annotations.RootEntity
 import com.example.springbootkotlinhexagonaldemo.infrastructure.enum.UserStatus
 import java.time.Instant
+import kotlin.math.hypot
 
 @RootEntity
 class User(
@@ -19,8 +21,8 @@ class User(
     var userStatus: UserStatus,
     var audit: Audit,
     var mileage: Mileage,
+    val mileageHistories: MutableSet<MileageHistory> = mutableSetOf()
 ) {
-
     constructor(
         email: Email,
         name: UserName,
@@ -35,7 +37,7 @@ class User(
             createdAt = Instant.now(),
             updatedAt = Instant.now(),
         ),
-        mileage = Mileage(id = null, point = PositiveOrZeroInt(0)),
+        mileage = Mileage(),
     )
 
     override fun equals(other: Any?): Boolean {
@@ -62,10 +64,24 @@ class User(
                 this.personalInfo = UserPersonalInfo(email = this.personalInfo.email, name = it)
             }
         }
+        this.audit.updated()
     }
 
-    fun updateMileagePoint(point: Int) {
-        if (point == 0) return
-        this.mileage.point += point
+    fun putMileagePoint(adjustPoint: Int, message: String? = null): MileageHistory {
+        val mightBePoint = this.mileage.point.plus(adjustPoint)
+        require(mightBePoint.value >= 0) { "user has not enough mileage point" }
+
+        val newMileageHistory = MileageHistory(
+            currentPoint = this.mileage.point,
+            adjustPoint = adjustPoint.toPositiveOrZeroInt(),
+            message = message,
+            mileage = this.mileage,
+        )
+        this.mileage.point = mightBePoint
+        return newMileageHistory
+    }
+
+    fun addMileageHistory(mileageHistory: MileageHistory) {
+        this.mileageHistories.add(mileageHistory)
     }
 }

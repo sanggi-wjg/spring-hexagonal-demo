@@ -11,3 +11,5 @@ data class PositiveOrZeroInt(
 fun Int.toPositiveOrZeroInt() = PositiveOrZeroInt(this)
 
 operator fun PositiveOrZeroInt.plus(source: Int) = PositiveOrZeroInt(this.value + source)
+
+operator fun PositiveOrZeroInt.plus(source: PositiveOrZeroInt) = PositiveOrZeroInt(this.value + source.value)

@@ -1,5 +1,6 @@
 package com.example.springbootkotlinhexagonaldemo.factory
 
+import com.example.springbootkotlinhexagonaldemo.adapter.persistence.mapper.UserMapper
 import com.example.springbootkotlinhexagonaldemo.domain.entity.Mileage
 import com.example.springbootkotlinhexagonaldemo.domain.entity.User
 import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email

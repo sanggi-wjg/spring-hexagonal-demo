@@ -25,15 +25,25 @@ class ReadUserAdapterTest(
         userRepository.deleteAllInBatch()
     }
 
-    test("유저 전체 조회할 수 있어야 한다.") {
-        // given
-        val userJPAEntities = userRepository.saveAll(
+    fun createUserJPAEntities(): List<UserJPAEntity> {
+        return userRepository.saveAll(
             listOf(
                 UserFactory.generalUserJPAEntity().also { mileageRepository.save(it.mileage) },
                 UserFactory.generalUserJPAEntity().also { mileageRepository.save(it.mileage) },
                 UserFactory.generalUserJPAEntity().also { mileageRepository.save(it.mileage) },
             )
         )
+    }
+
+    fun createUserEntity(): UserJPAEntity {
+        return userRepository.save(
+            UserFactory.generalUserJPAEntity().also { mileageRepository.save(it.mileage) },
+        )
+    }
+
+    test("유저 전체 조회할 수 있어야 한다.") {
+        // given
+        val userJPAEntities = createUserJPAEntities()
         val users = userJPAEntities.map { UserMapper.toDomain(it) }
 
         // when ~ then
@@ -48,13 +58,7 @@ class ReadUserAdapterTest(
 
     test("유저 ID로 조회할 수 있어야 한디.") {
         // given
-        val userJPAEntities = userRepository.saveAll(
-            listOf(
-                UserFactory.generalUserJPAEntity().also { mileageRepository.save(it.mileage) },
-                UserFactory.generalUserJPAEntity().also { mileageRepository.save(it.mileage) },
-                UserFactory.generalUserJPAEntity().also { mileageRepository.save(it.mileage) },
-            )
-        )
+        val userJPAEntities = createUserJPAEntities()
         val users = userJPAEntities.map { UserMapper.toDomain(it) }
         val user = users.last()
 
@@ -64,9 +68,7 @@ class ReadUserAdapterTest(
 
     test("유저 이메일 존재 여부를 조회할 수 있어야 한다.") {
         // given
-        val userJPAEntity = userRepository.save(
-            UserFactory.generalUserJPAEntity().also { mileageRepository.save(it.mileage) },
-        )
+        val userJPAEntity = createUserEntity()
         val user = UserMapper.toDomain(userJPAEntity)
 
         // when

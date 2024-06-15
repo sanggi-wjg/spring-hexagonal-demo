@@ -1,0 +1,6 @@
+package com.example.springbootkotlinhexagonaldemo.infrastructure.repository
+
+import com.example.springbootkotlinhexagonaldemo.infrastructure.entity.MileageHistoryJPAEntity
+import org.springframework.data.jpa.repository.JpaRepository
+
+interface MileageHistoryRepository : JpaRepository<MileageHistoryJPAEntity, Int>
