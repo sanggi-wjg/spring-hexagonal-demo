@@ -9,15 +9,13 @@ import com.example.springbootkotlinhexagonaldemo.domain.type.embed.UserPersonalI
 import com.example.springbootkotlinhexagonaldemo.domain.type.id.MileageId
 import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
 import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
-import com.example.springbootkotlinhexagonaldemo.infrastructure.entity.MileageJPAEntity
-import com.example.springbootkotlinhexagonaldemo.infrastructure.entity.UserJPAEntity
 import com.example.springbootkotlinhexagonaldemo.infrastructure.enum.UserStatus
 import java.time.Instant
 
 object UserFactory {
     private var id = 0
 
-    fun entity(
+    fun create(
         userStatus: UserStatus = UserStatus.ACTIVE
     ): User {
         id++
@@ -37,23 +35,6 @@ object UserFactory {
                 point = 0.toPositiveOrZeroInt()
             ),
             mileageHistories = setOf(),
-        )
-    }
-
-    fun jpaEntity(
-        userStatus: UserStatus = UserStatus.ACTIVE
-    ): UserJPAEntity {
-        return UserJPAEntity(
-            id = null,
-            email = "user_$id@dev.com",
-            name = "user_$id",
-            userStatus = userStatus,
-            createdAt = Instant.now(),
-            updatedAt = Instant.now(),
-            mileage = MileageJPAEntity(
-                id = null,
-                point = 0
-            )
         )
     }
 }

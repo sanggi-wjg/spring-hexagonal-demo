@@ -44,7 +44,7 @@ class ReadUserByIdServiceTest(
 
     test("유저 ID 조회할 수 있어야 한다.") {
         // given
-        val userFixture = UserFactory.entity()
+        val userFixture = UserFactory.create()
         val query = ReadUserByIdUseCase.Query(
             userId = userFixture.id!!
         )

@@ -27,7 +27,7 @@ class UpdateUserByIdServiceTest(
 
     test("유저 정보를 수정할 수 있어야 한다.") {
         // given
-        val userFixture = UserFactory.entity()
+        val userFixture = UserFactory.create()
         val command = UpdateUserByIdUseCase.Command(
             userId = userFixture.id!!,
             email = Email("email@dev.com"),
