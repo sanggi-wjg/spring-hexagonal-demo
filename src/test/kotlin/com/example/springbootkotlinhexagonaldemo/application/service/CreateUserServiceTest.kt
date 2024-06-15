@@ -1,59 +1,67 @@
 package com.example.springbootkotlinhexagonaldemo.application.service
 
-import com.example.springbootkotlinhexagonaldemo.application.port.persistence.ReadUserPort
-import com.example.springbootkotlinhexagonaldemo.application.port.persistence.WriteUserPort
 import com.example.springbootkotlinhexagonaldemo.application.service.user.CreateUserService
-import com.example.springbootkotlinhexagonaldemo.domain.model.UserCreation
+import com.example.springbootkotlinhexagonaldemo.application.usecase.user.CreateUserUseCase
+import com.example.springbootkotlinhexagonaldemo.domain.entity.Mileage
+import com.example.springbootkotlinhexagonaldemo.domain.entity.User
 import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
 import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
-import com.example.springbootkotlinhexagonaldemo.factory.UserFactory
-import com.ninjasquad.springmockk.MockkBean
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
-import io.kotest.matchers.equality.shouldBeEqualToComparingFields
-import io.mockk.every
+import io.kotest.matchers.equality.shouldBeEqualToIgnoringFields
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
 class CreateUserServiceTest(
     private val createUserService: CreateUserService,
-    @MockkBean private val readUserPort: ReadUserPort,
-    @MockkBean private val writeUserPort: WriteUserPort,
 ) : FunSpec({
 
     test("유저를 생성할 수 있어야 한다.") {
         // given
-        val userCreation = UserCreation(name = UserName("홍길동"), email = Email("JhZpR@example.com"))
-        val userMock = UserFactory.generalUser()
+        val command = CreateUserUseCase.Command(
+            email = Email("JhZpR-1@example.com"),
+            name = UserName("홍길동-1"),
+        )
 
-        // mock
-        every {
-            readUserPort.existsByEmail(userCreation.email)
-        } returns false
-
-        every {
-            writeUserPort.create(any())
-        } returns userMock
+        val expectedUser = User(
+            email = command.email,
+            name = command.name,
+        )
+        val expectedMileage = Mileage()
 
         // when
-        val user = createUserService.createUser(userCreation)
+        val createdUser = createUserService.createUser(command)
 
         // then
-        user.shouldBeEqualToComparingFields(userMock)
+        createdUser.shouldBeEqualToIgnoringFields(
+            expectedUser,
+            User::id,
+            User::audit,
+            User::mileage,
+            User::mileageHistories,
+        )
+        createdUser.mileage.shouldBeEqualToIgnoringFields(
+            expectedMileage,
+            Mileage::id,
+        )
     }
 
     test("존재하는 이메일이라면 에러가 발생해야 한다.") {
         // given
-        val userCreation = UserCreation(name = UserName("홍길동"), email = Email("JhZpR@example.com"))
+        val command1 = CreateUserUseCase.Command(
+            email = Email("customer_2@dev.com"),
+            name = UserName("홍길동"),
+        )
+        val command2 = CreateUserUseCase.Command(
+            email = command1.email,
+            name = UserName("고길동"),
+        )
 
-        // mock
-        every {
-            readUserPort.existsByEmail(userCreation.email)
-        } returns true
+        createUserService.createUser(command1)
 
-        // when
+        // when ~ then
         shouldThrow<IllegalArgumentException> {
-            createUserService.createUser(userCreation)
+            createUserService.createUser(command2)
         }
     }
 })

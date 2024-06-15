@@ -13,7 +13,7 @@ object MileageHistoryMapper {
             id = MileageHistoryId(mileageHistory.id!!),
             beforeMileagePoint = mileageHistory.beforeMileagePoint.toPositiveOrZeroInt(),
             afterMileagePoint = mileageHistory.afterMileagePoint.toPositiveOrZeroInt(),
-            point = mileageHistory.point.toPositiveOrZeroInt(),
+            point = mileageHistory.point,
             message = mileageHistory.message,
             audit = Audit(
                 createdAt = mileageHistory.createdAt,
@@ -28,7 +28,7 @@ object MileageHistoryMapper {
             id = mileageHistory.id?.value,
             beforeMileagePoint = mileageHistory.beforeMileagePoint.value,
             afterMileagePoint = mileageHistory.afterMileagePoint.value,
-            point = mileageHistory.point.value,
+            point = mileageHistory.point,
             message = mileageHistory.message,
             createdAt = mileageHistory.audit.createdAt,
             updatedAt = mileageHistory.audit.updatedAt,

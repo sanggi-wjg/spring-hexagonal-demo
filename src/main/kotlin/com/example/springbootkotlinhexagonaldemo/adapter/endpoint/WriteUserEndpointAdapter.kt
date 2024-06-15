@@ -5,33 +5,29 @@ import com.example.springbootkotlinhexagonaldemo.application.port.endpoint.Write
 import com.example.springbootkotlinhexagonaldemo.application.usecase.user.CreateUserUseCase
 import com.example.springbootkotlinhexagonaldemo.application.usecase.user.DeleteUserByIdUseCase
 import com.example.springbootkotlinhexagonaldemo.application.usecase.user.UpdateUserByIdUseCase
-import com.example.springbootkotlinhexagonaldemo.domain.model.UserCreation
-import com.example.springbootkotlinhexagonaldemo.domain.model.UserModification
-import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
 import com.example.springbootkotlinhexagonaldemo.infrastructure.annotations.Adapter
 import com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.response.UserResponseDto
 
 @Adapter
 class WriteUserEndpointAdapter(
-    private val saveNewUserUseCase: CreateUserUseCase,
+    private val createUserUseCase: CreateUserUseCase,
     private val updateUserByIdUseCase: UpdateUserByIdUseCase,
     private val deleteUserByIdUseCase: DeleteUserByIdUseCase,
 ) : WriteUserEndpointPort {
 
-    override fun createUser(userCreation: UserCreation): UserResponseDto {
-        return saveNewUserUseCase.createUser(userCreation).let {
+    override fun createUser(command: CreateUserUseCase.Command): UserResponseDto {
+        return createUserUseCase.createUser(command).let {
             UserDtoMapper.toUserResponseDto(it)
         }
     }
 
-    override fun modifyUserById(userId: Int, userModification: UserModification): UserResponseDto {
-        return updateUserByIdUseCase.updateUserById(UserId(userId), userModification).let {
+    override fun modifyUserById(command: UpdateUserByIdUseCase.Command): UserResponseDto {
+        return updateUserByIdUseCase.updateUserById(command).let {
             UserDtoMapper.toUserResponseDto(it)
         }
     }
 
-    override fun removeUserById(userId: Int): Boolean {
-        deleteUserByIdUseCase.deleteUserById(UserId(userId))
-        return true
+    override fun removeUserById(command: DeleteUserByIdUseCase.Command): Boolean {
+        return deleteUserByIdUseCase.deleteUserById(command)
     }
 }

@@ -10,21 +10,21 @@ class MileageHistory(
     val id: MileageHistoryId?,
     val beforeMileagePoint: PositiveOrZeroInt,
     val afterMileagePoint: PositiveOrZeroInt,
-    val point: PositiveOrZeroInt,
+    val point: Int,
     val message: String?,
     val audit: Audit,
     val mileage: Mileage,
 ) {
     constructor(
         currentPoint: PositiveOrZeroInt,
-        adjustPoint: PositiveOrZeroInt,
+        inputPoint: Int,
         message: String?,
         mileage: Mileage,
     ) : this(
         id = null,
         beforeMileagePoint = currentPoint,
-        afterMileagePoint = currentPoint.plus(adjustPoint),
-        point = adjustPoint,
+        afterMileagePoint = currentPoint.plus(inputPoint),
+        point = inputPoint,
         message = message,
         audit = Audit(
             createdAt = Instant.now(),

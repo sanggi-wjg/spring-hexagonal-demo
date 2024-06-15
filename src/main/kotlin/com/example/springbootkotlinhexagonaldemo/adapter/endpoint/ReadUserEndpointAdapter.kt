@@ -2,26 +2,25 @@ package com.example.springbootkotlinhexagonaldemo.adapter.endpoint
 
 import com.example.springbootkotlinhexagonaldemo.adapter.endpoint.mapper.UserDtoMapper
 import com.example.springbootkotlinhexagonaldemo.application.port.endpoint.ReadUserEndpointPort
-import com.example.springbootkotlinhexagonaldemo.application.usecase.user.FindAllUsersUseCase
-import com.example.springbootkotlinhexagonaldemo.application.usecase.user.FindUserByIdUseCase
-import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
+import com.example.springbootkotlinhexagonaldemo.application.usecase.user.ReadUserByIdUseCase
+import com.example.springbootkotlinhexagonaldemo.application.usecase.user.ReadUsersUseCase
 import com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.response.UserResponseDto
 import org.springframework.stereotype.Component
 
 @Component
 class ReadUserEndpointAdapter(
-    private val findAllUsersUseCase: FindAllUsersUseCase,
-    private val findUserByIdUseCase: FindUserByIdUseCase,
+    private val readUsersUseCase: ReadUsersUseCase,
+    private val readUserByIdUseCase: ReadUserByIdUseCase,
 ) : ReadUserEndpointPort {
 
-    override fun getAllUsers(): Collection<UserResponseDto> {
-        return findAllUsersUseCase.findAllUsers().map {
+    override fun getAllUsers(query: ReadUsersUseCase.Query): Collection<UserResponseDto> {
+        return readUsersUseCase.readUsers(query).map {
             UserDtoMapper.toUserResponseDto(it)
         }
     }
 
-    override fun getUserById(userId: Int): UserResponseDto {
-        return findUserByIdUseCase.findById(UserId(userId)).let {
+    override fun getUserById(query: ReadUserByIdUseCase.Query): UserResponseDto {
+        return readUserByIdUseCase.readById(query).let {
             UserDtoMapper.toUserResponseDto(it)
         }
     }

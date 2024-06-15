@@ -54,6 +54,7 @@ class MileageHistoryJPAEntity(
     var updatedAt: Instant = updatedAt
         private set
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "mileage_id")
     var mileage: MileageJPAEntity = mileage

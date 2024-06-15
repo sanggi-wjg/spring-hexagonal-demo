@@ -4,5 +4,9 @@ import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
 
 interface DeleteUserByIdUseCase {
 
-    fun deleteUserById(id: UserId): Boolean
+    fun deleteUserById(command: Command): Boolean
+
+    data class Command(
+        val userId: UserId,
+    )
 }

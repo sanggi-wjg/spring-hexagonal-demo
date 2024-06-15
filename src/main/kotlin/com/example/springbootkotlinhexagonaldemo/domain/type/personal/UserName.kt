@@ -4,6 +4,6 @@ data class UserName(
     val value: String
 ) {
     init {
-
+        // validate
     }
 }

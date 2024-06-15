@@ -4,9 +4,7 @@ import com.example.springbootkotlinhexagonaldemo.application.port.persistence.Re
 import com.example.springbootkotlinhexagonaldemo.application.port.persistence.WriteMileagePort
 import com.example.springbootkotlinhexagonaldemo.application.port.persistence.WriteUserPort
 import com.example.springbootkotlinhexagonaldemo.application.usecase.user.CreateUserUseCase
-import com.example.springbootkotlinhexagonaldemo.domain.entity.Mileage
 import com.example.springbootkotlinhexagonaldemo.domain.entity.User
-import com.example.springbootkotlinhexagonaldemo.domain.model.UserCreation
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -18,15 +16,15 @@ class CreateUserService(
     private val writeMileagePort: WriteMileagePort,
 ) : CreateUserUseCase {
 
-    override fun createUser(userCreation: UserCreation): User {
-        val isExistsEmail = readUserPort.existsByEmail(userCreation.email)
+    override fun createUser(command: CreateUserUseCase.Command): User {
+        val isExistsEmail = readUserPort.existsByEmail(command.email)
         require(!isExistsEmail)
 
-        val user = User(
-            email = userCreation.email,
-            name = userCreation.name,
+        val user = User(name = command.name, email = command.email)
+        val mileage = writeMileagePort.create(user.mileage)
+
+        return writeUserPort.create(
+            user.copy(mileage = mileage)
         )
-        user.mileage = writeMileagePort.create(user.mileage)
-        return writeUserPort.create(user)
     }
 }

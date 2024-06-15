@@ -1,10 +1,7 @@
 package com.example.springbootkotlinhexagonaldemo.domain.entity
 
-import com.example.springbootkotlinhexagonaldemo.domain.model.UserModification
 import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
-import com.example.springbootkotlinhexagonaldemo.domain.type.common.PositiveOrZeroInt
 import com.example.springbootkotlinhexagonaldemo.domain.type.common.plus
-import com.example.springbootkotlinhexagonaldemo.domain.type.common.toPositiveOrZeroInt
 import com.example.springbootkotlinhexagonaldemo.domain.type.embed.Audit
 import com.example.springbootkotlinhexagonaldemo.domain.type.embed.UserPersonalInfo
 import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
@@ -12,16 +9,15 @@ import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
 import com.example.springbootkotlinhexagonaldemo.infrastructure.annotations.RootEntity
 import com.example.springbootkotlinhexagonaldemo.infrastructure.enum.UserStatus
 import java.time.Instant
-import kotlin.math.hypot
 
 @RootEntity
 class User(
     val id: UserId?,
-    var personalInfo: UserPersonalInfo,
-    var userStatus: UserStatus,
-    var audit: Audit,
-    var mileage: Mileage,
-    val mileageHistories: MutableSet<MileageHistory> = mutableSetOf()
+    val personalInfo: UserPersonalInfo,
+    val userStatus: UserStatus,
+    val audit: Audit,
+    val mileage: Mileage,
+    val mileageHistories: Set<MileageHistory>
 ) {
     constructor(
         email: Email,
@@ -38,6 +34,7 @@ class User(
             updatedAt = Instant.now(),
         ),
         mileage = Mileage(),
+        mileageHistories = mutableSetOf(),
     )
 
     override fun equals(other: Any?): Boolean {
@@ -51,37 +48,65 @@ class User(
         return id.hashCode()
     }
 
-    fun update(modification: UserModification) {
-        modification.userStatus?.let { this.userStatus = it }
+    fun copy(
+        personalInfo: UserPersonalInfo? = null,
+        userStatus: UserStatus? = null,
+        mileage: Mileage? = null,
+        mileageHistories: Set<MileageHistory>? = null
+    ) = User(
+        id = this.id,
+        personalInfo = personalInfo ?: this.personalInfo,
+        userStatus = userStatus ?: this.userStatus,
+        audit = this.audit,
+        mileage = mileage ?: this.mileage,
+        mileageHistories = mileageHistories ?: this.mileageHistories
+    )
 
-        if (modification.email != null && modification.name != null) {
-            this.personalInfo = UserPersonalInfo(email = modification.email, name = modification.name)
-        } else {
-            modification.email?.let {
-                this.personalInfo = UserPersonalInfo(email = modification.email, name = this.personalInfo.name)
-            }
-            modification.name?.let {
-                this.personalInfo = UserPersonalInfo(email = this.personalInfo.email, name = it)
-            }
-        }
-        this.audit.updated()
+    fun isActive(): Boolean {
+        return this.userStatus == UserStatus.ACTIVE
     }
 
-    fun putMileagePoint(adjustPoint: Int, message: String? = null): MileageHistory {
-        val mightBePoint = this.mileage.point.plus(adjustPoint)
-        require(mightBePoint.value >= 0) { "user has not enough mileage point" }
+    fun isLeft(): Boolean {
+        return this.userStatus == UserStatus.LEFT
+    }
 
-        val newMileageHistory = MileageHistory(
+    fun update(
+        inputEmail: Email?,
+        inputName: UserName?,
+        inputUserStatus: UserStatus?
+    ): User {
+        check(!this.isLeft()) {
+            "left user cannot be updated"
+        }
+
+        return this.copy(
+            personalInfo = UserPersonalInfo(
+                email = inputEmail ?: this.personalInfo.email,
+                name = inputName ?: this.personalInfo.name
+            ),
+            userStatus = inputUserStatus ?: this.userStatus
+        )
+    }
+
+    fun putMileagePoint(
+        inputPoint: Int,
+        message: String? = null
+    ): User {
+        val mightBePoint = this.mileage.point.plus(inputPoint)
+        check(mightBePoint.value >= 0) {
+            "user has not enough mileage point"
+        }
+
+        val newHistory = MileageHistory(
             currentPoint = this.mileage.point,
-            adjustPoint = adjustPoint.toPositiveOrZeroInt(),
+            inputPoint = inputPoint,
             message = message,
             mileage = this.mileage,
         )
-        this.mileage.point = mightBePoint
-        return newMileageHistory
-    }
 
-    fun addMileageHistory(mileageHistory: MileageHistory) {
-        this.mileageHistories.add(mileageHistory)
+        return this.copy(
+            mileage = this.mileage.copy(mightBePoint),
+            mileageHistories = this.mileageHistories + setOf(newHistory)
+        )
     }
 }

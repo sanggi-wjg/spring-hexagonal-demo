@@ -6,8 +6,11 @@ import com.example.springbootkotlinhexagonaldemo.application.port.persistence.Wr
 import com.example.springbootkotlinhexagonaldemo.application.port.persistence.WriteUserPort
 import com.example.springbootkotlinhexagonaldemo.application.usecase.user.AddMileagePointUseCase
 import com.example.springbootkotlinhexagonaldemo.domain.entity.User
-import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
+import jakarta.transaction.Transactional
+import org.springframework.stereotype.Service
 
+@Transactional
+@Service
 class AddMileagePointService(
     private val readUserPort: ReadUserPort,
     private val writeUserPort: WriteUserPort,
@@ -15,13 +18,13 @@ class AddMileagePointService(
     private val writeMileageHistoryPort: WriteMileageHistoryPort,
 ) : AddMileagePointUseCase {
 
-    override fun addMileagePoint(id: UserId, mileagePoint: Int): User {
-        val user = readUserPort.findById(id)
-        requireNotNull(user)
+    override fun addMileagePoint(command: AddMileagePointUseCase.Command): User {
+        val findUser = readUserPort.findById(command.userId)
+        requireNotNull(findUser) {}
 
-        val newMileageHistory = user.putMileagePoint(mileagePoint, message = "적립금 꽁짜 발급이닷닷")
-        writeMileagePort.update(user.mileage)
-        user.addMileageHistory(writeMileageHistoryPort.create(newMileageHistory))
-        return user
+        val updatedUser = findUser.putMileagePoint(command.mileagePoint, command.message)
+        writeMileagePort.update(updatedUser.mileage)
+        writeMileageHistoryPort.create(updatedUser.mileageHistories.last())
+        return readUserPort.findById(command.userId)!!
     }
 }

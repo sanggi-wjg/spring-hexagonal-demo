@@ -19,4 +19,7 @@ class MileageJPAEntity(
     @Column(name = "point", nullable = false)
     var point: Int = point
         private set
+
+    @OneToMany(mappedBy = "mileage")
+    var mileageHistories: MutableList<MileageHistoryJPAEntity> = mutableListOf()
 }

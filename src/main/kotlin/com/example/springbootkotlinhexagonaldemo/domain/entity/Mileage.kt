@@ -1,13 +1,12 @@
 package com.example.springbootkotlinhexagonaldemo.domain.entity
 
 import com.example.springbootkotlinhexagonaldemo.domain.type.common.PositiveOrZeroInt
-import com.example.springbootkotlinhexagonaldemo.domain.type.common.plus
 import com.example.springbootkotlinhexagonaldemo.domain.type.common.toPositiveOrZeroInt
 import com.example.springbootkotlinhexagonaldemo.domain.type.id.MileageId
 
 class Mileage(
     val id: MileageId?,
-    var point: PositiveOrZeroInt,
+    val point: PositiveOrZeroInt,
 ) {
     constructor() : this(
         id = null,
@@ -24,4 +23,11 @@ class Mileage(
     override fun hashCode(): Int {
         return id.hashCode()
     }
+
+    fun copy(
+        point: PositiveOrZeroInt
+    ) = Mileage(
+        id = this.id,
+        point = point
+    )
 }

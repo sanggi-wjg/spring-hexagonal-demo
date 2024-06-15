@@ -1,10 +1,13 @@
 package com.example.springbootkotlinhexagonaldemo.infrastructure.controller
 
-import com.example.springbootkotlinhexagonaldemo.application.port.endpoint.WriteUserEndpointPort
 import com.example.springbootkotlinhexagonaldemo.application.port.endpoint.ReadUserEndpointPort
+import com.example.springbootkotlinhexagonaldemo.application.port.endpoint.WriteUserEndpointPort
+import com.example.springbootkotlinhexagonaldemo.application.usecase.user.DeleteUserByIdUseCase
+import com.example.springbootkotlinhexagonaldemo.application.usecase.user.ReadUserByIdUseCase
+import com.example.springbootkotlinhexagonaldemo.application.usecase.user.ReadUsersUseCase
+import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
 import com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.request.UserCreationDto
 import com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.request.UserModificationDto
-import com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.request.toDomain
 import com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.response.UserResponseDto
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
@@ -22,16 +25,24 @@ class UserController(
     fun createUser(
         @RequestBody @Valid userCreationDto: UserCreationDto,
     ): ResponseEntity<UserResponseDto> {
+        val command = userCreationDto.toCreateUserUseCaseCommand()
+
         return ResponseEntity(
-            writeUserEndpointPort.createUser(userCreationDto.toDomain()),
+            writeUserEndpointPort.createUser(command),
             HttpStatus.CREATED,
         )
     }
 
     @GetMapping("")
-    fun getAllUsers(): ResponseEntity<Collection<UserResponseDto>> {
+    fun getAllUsers(
+        @RequestParam("userId", required = false) userIds: List<Int>?
+    ): ResponseEntity<Collection<UserResponseDto>> {
+        val query = ReadUsersUseCase.Query(
+            userIds = userIds?.map { UserId(it) },
+        )
+
         return ResponseEntity(
-            readUserEndpointPort.getAllUsers(),
+            readUserEndpointPort.getAllUsers(query),
             HttpStatus.OK,
         )
     }
@@ -40,8 +51,12 @@ class UserController(
     fun getUserById(
         @PathVariable("userId") userId: Int,
     ): ResponseEntity<UserResponseDto> {
+        val query = ReadUserByIdUseCase.Query(
+            UserId(userId),
+        )
+
         return ResponseEntity(
-            readUserEndpointPort.getUserById(userId),
+            readUserEndpointPort.getUserById(query),
             HttpStatus.OK
         )
     }
@@ -51,8 +66,10 @@ class UserController(
         @PathVariable("userId") userId: Int,
         @RequestBody @Valid userModificationDto: UserModificationDto,
     ): ResponseEntity<UserResponseDto> {
+        val command = userModificationDto.toUpdateUserByIdUseCaseCommand(userId)
+
         return ResponseEntity(
-            writeUserEndpointPort.modifyUserById(userId, userModificationDto.toDomain()),
+            writeUserEndpointPort.modifyUserById(command),
             HttpStatus.OK
         )
     }
@@ -61,7 +78,11 @@ class UserController(
     fun removeUserById(
         @PathVariable("userId") userId: Int,
     ): ResponseEntity<Unit> {
-        writeUserEndpointPort.removeUserById(userId)
+        val command = DeleteUserByIdUseCase.Command(
+            UserId(userId),
+        )
+
+        writeUserEndpointPort.removeUserById(command)
         return ResponseEntity(HttpStatus.NO_CONTENT)
     }
 }

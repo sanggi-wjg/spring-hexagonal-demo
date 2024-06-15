@@ -1,9 +1,6 @@
 package com.example.springbootkotlinhexagonaldemo.application.port.persistence
 
 import com.example.springbootkotlinhexagonaldemo.domain.entity.User
-import com.example.springbootkotlinhexagonaldemo.domain.model.UserCreation
-import com.example.springbootkotlinhexagonaldemo.domain.model.UserModification
-import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
 
 interface WriteUserPort {
 

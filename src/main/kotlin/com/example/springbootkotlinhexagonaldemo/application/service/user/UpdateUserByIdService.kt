@@ -4,8 +4,6 @@ import com.example.springbootkotlinhexagonaldemo.application.port.persistence.Re
 import com.example.springbootkotlinhexagonaldemo.application.port.persistence.WriteUserPort
 import com.example.springbootkotlinhexagonaldemo.application.usecase.user.UpdateUserByIdUseCase
 import com.example.springbootkotlinhexagonaldemo.domain.entity.User
-import com.example.springbootkotlinhexagonaldemo.domain.model.UserModification
-import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -16,12 +14,16 @@ class UpdateUserByIdService(
     private val writeUserPort: WriteUserPort,
 ) : UpdateUserByIdUseCase {
 
-    override fun updateUserById(id: UserId, userModification: UserModification): User {
-        val user = readUserPort.findById(id)
-        requireNotNull(user)
+    override fun updateUserById(command: UpdateUserByIdUseCase.Command): User {
+        val findUser = readUserPort.findById(command.userId)
+        requireNotNull(findUser)
 
-        user.update(userModification)
-        writeUserPort.update(user)
-        return user
+        return findUser.update(
+            inputEmail = command.email,
+            inputName = command.name,
+            inputUserStatus = command.userStatus
+        ).let {
+            writeUserPort.update(it)
+        }
     }
 }

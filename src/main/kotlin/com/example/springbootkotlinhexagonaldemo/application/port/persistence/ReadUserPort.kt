@@ -6,7 +6,9 @@ import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
 
 interface ReadUserPort {
 
-    fun findAll(): Collection<User>
+    fun findAll(
+        userIds: List<UserId>?
+    ): Collection<User>
 
     fun findById(id: UserId): User?
 
