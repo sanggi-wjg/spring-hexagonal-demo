@@ -15,6 +15,8 @@ object UserDtoMapper {
         email = user.personalInfo.email.value,
         name = user.personalInfo.name.value,
         userStatus = user.userStatus,
+        createdAt = user.audit.createdAt,
+        updatedAt = user.audit.updatedAt,
     )
 
     fun toUserDetailResponseDto(user: User) = UserDetailResponseDto(

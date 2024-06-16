@@ -3,10 +3,13 @@ package com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.
 import com.example.springbootkotlinhexagonaldemo.application.usecase.user.CreateUserUseCase
 import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
 import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
+import jakarta.validation.constraints.NotBlank
 
 
 data class UserCreationDto(
+    @field:NotBlank()
     val email: String,
+    @field:NotBlank()
     val name: String,
 ) {
     fun toCreateUserUseCaseCommand() = CreateUserUseCase.Command(

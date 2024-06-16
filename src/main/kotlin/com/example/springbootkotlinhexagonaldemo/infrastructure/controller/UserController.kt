@@ -11,9 +11,9 @@ import com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.r
 import com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.response.UserDetailResponseDto
 import com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.response.UserResponseDto
 import jakarta.validation.Valid
-import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.net.URI
 
 @RestController
 @RequestMapping("/users")
@@ -28,10 +28,9 @@ class UserController(
     ): ResponseEntity<UserResponseDto> {
         val command = userCreationDto.toCreateUserUseCaseCommand()
 
-        return ResponseEntity(
-            writeUserEndpointPort.createUser(command),
-            HttpStatus.CREATED,
-        )
+        return writeUserEndpointPort.createUser(command).let {
+            ResponseEntity.created(URI.create("/users/${it.id}")).build()
+        }
     }
 
     @GetMapping("")
@@ -42,10 +41,9 @@ class UserController(
             userIds = userIds?.map { UserId(it) },
         )
 
-        return ResponseEntity(
-            readUserEndpointPort.readUsers(query),
-            HttpStatus.OK,
-        )
+        return readUserEndpointPort.readUsers(query).let {
+            ResponseEntity.ok(it)
+        }
     }
 
     @GetMapping("/{userId}")
@@ -56,10 +54,9 @@ class UserController(
             UserId(userId),
         )
 
-        return ResponseEntity(
-            readUserEndpointPort.readUserById(query),
-            HttpStatus.OK
-        )
+        return readUserEndpointPort.readUserById(query).let {
+            ResponseEntity.ok(it)
+        }
     }
 
     @PatchMapping("/{userId}")
@@ -69,10 +66,9 @@ class UserController(
     ): ResponseEntity<UserResponseDto> {
         val command = userModificationDto.toUpdateUserByIdUseCaseCommand(userId)
 
-        return ResponseEntity(
-            writeUserEndpointPort.updateUserById(command),
-            HttpStatus.OK
-        )
+        return writeUserEndpointPort.updateUserById(command).let {
+            ResponseEntity.ok(it)
+        }
     }
 
     @DeleteMapping("/{userId}")
@@ -83,7 +79,8 @@ class UserController(
             UserId(userId),
         )
 
-        writeUserEndpointPort.deleteUserById(command)
-        return ResponseEntity(HttpStatus.NO_CONTENT)
+        return writeUserEndpointPort.deleteUserById(command).let {
+            ResponseEntity.noContent().build()
+        }
     }
 }

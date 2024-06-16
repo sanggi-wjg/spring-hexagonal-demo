@@ -35,4 +35,14 @@ class UserJPAEntityFactory(
             )
         )
     }
+
+    fun deleteAll() {
+        listOf(
+            userRepository,
+            mileageHistoryRepository,
+            mileageRepository,
+        ).forEach {
+            it.deleteAllInBatch()
+        }
+    }
 }
