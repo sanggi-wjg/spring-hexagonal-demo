@@ -1,10 +1,10 @@
 package com.example.springbootkotlinhexagonaldemo.infrastructure.controller
 
-import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.controller.dto.request.UserCreationDto
-import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.controller.dto.request.UserModificationDto
-import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.controller.dto.response.UserDetailResponseDto
-import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.controller.dto.response.UserResponseDto
-import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.controller.dto.response.scheme.MileageBasicScheme
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.request.UserCreationDto
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.request.UserModificationDto
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.response.UserDetailResponseDto
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.response.UserResponseDto
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.response.scheme.MileageBasicScheme
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository.MileageHistoryRepository
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository.MileageRepository
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository.UserRepository

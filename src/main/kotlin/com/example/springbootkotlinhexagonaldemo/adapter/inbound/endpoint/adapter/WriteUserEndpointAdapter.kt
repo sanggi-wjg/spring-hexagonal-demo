@@ -1,7 +1,7 @@
 package com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter
 
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.response.UserResponseDto
 import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.mapper.UserDtoMapper
-import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.controller.dto.response.UserResponseDto
 import com.example.springbootkotlinhexagonaldemo.application.port.endpoint.WriteUserEndpointPort
 import com.example.springbootkotlinhexagonaldemo.application.usecase.user.CreateUserUseCase
 import com.example.springbootkotlinhexagonaldemo.application.usecase.user.DeleteUserByIdUseCase

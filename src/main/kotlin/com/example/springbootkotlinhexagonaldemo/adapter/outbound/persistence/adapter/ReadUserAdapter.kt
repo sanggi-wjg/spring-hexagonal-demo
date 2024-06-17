@@ -1,6 +1,6 @@
-package com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence
+package com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.adapter
 
-import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.mapper.UserMapper
+import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.adapter.mapper.UserMapper
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository.UserRepository
 import com.example.springbootkotlinhexagonaldemo.application.port.persistence.ReadUserPort
 import com.example.springbootkotlinhexagonaldemo.domain.entity.User

@@ -1,4 +1,4 @@
-package com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.mapper
+package com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.adapter.mapper
 
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.entity.MileageJPAEntity
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.entity.UserJPAEntity

@@ -1,4 +1,4 @@
-package com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.controller.dto.request
+package com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.request
 
 import com.example.springbootkotlinhexagonaldemo.application.usecase.user.UpdateUserByIdUseCase
 import com.example.springbootkotlinhexagonaldemo.domain.enum.UserStatus

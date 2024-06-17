@@ -1,9 +1,9 @@
 package com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.controller
 
-import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.controller.dto.request.UserCreationDto
-import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.controller.dto.request.UserModificationDto
-import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.controller.dto.response.UserDetailResponseDto
-import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.controller.dto.response.UserResponseDto
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.request.UserCreationDto
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.request.UserModificationDto
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.response.UserDetailResponseDto
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.response.UserResponseDto
 import com.example.springbootkotlinhexagonaldemo.application.port.endpoint.ReadUserEndpointPort
 import com.example.springbootkotlinhexagonaldemo.application.port.endpoint.WriteUserEndpointPort
 import com.example.springbootkotlinhexagonaldemo.application.usecase.user.DeleteUserByIdUseCase
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*
 import java.net.URI
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/v1/users")
 class UserController(
     private val readUserEndpointPort: ReadUserEndpointPort,
     private val writeUserEndpointPort: WriteUserEndpointPort,

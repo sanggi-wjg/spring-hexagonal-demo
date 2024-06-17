@@ -1,7 +1,7 @@
-package com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.controller.dto.response
+package com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.response
 
-import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.controller.dto.response.scheme.MileageBasicScheme
-import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.controller.dto.response.scheme.MileageHistoryBasicScheme
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.response.scheme.MileageBasicScheme
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.response.scheme.MileageHistoryBasicScheme
 import com.example.springbootkotlinhexagonaldemo.domain.enum.UserStatus
 import com.fasterxml.jackson.annotation.JsonFormat
 import java.time.Instant

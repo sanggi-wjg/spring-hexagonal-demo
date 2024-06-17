@@ -1,8 +1,8 @@
 package com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter
 
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.response.UserDetailResponseDto
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.response.UserResponseDto
 import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.mapper.UserDtoMapper
-import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.controller.dto.response.UserDetailResponseDto
-import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.controller.dto.response.UserResponseDto
 import com.example.springbootkotlinhexagonaldemo.application.port.endpoint.ReadUserEndpointPort
 import com.example.springbootkotlinhexagonaldemo.application.usecase.user.ReadUserByIdUseCase
 import com.example.springbootkotlinhexagonaldemo.application.usecase.user.ReadUsersUseCase

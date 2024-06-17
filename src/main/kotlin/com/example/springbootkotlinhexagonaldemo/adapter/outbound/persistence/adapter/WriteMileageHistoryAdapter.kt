@@ -1,7 +1,7 @@
-package com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence
+package com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.adapter
 
+import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.adapter.mapper.MileageHistoryMapper
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.entity.MileageHistoryJPAEntity
-import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.mapper.MileageHistoryMapper
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository.MileageHistoryRepository
 import com.example.springbootkotlinhexagonaldemo.application.port.persistence.WriteMileageHistoryPort
 import com.example.springbootkotlinhexagonaldemo.domain.entity.MileageHistory
