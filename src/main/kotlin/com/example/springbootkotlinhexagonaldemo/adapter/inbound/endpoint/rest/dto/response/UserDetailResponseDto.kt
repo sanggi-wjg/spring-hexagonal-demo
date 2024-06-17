@@ -1,10 +1,12 @@
-package com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.response
+package com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.dto.response
 
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.dto.response.scheme.MileageBasicScheme
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.dto.response.scheme.MileageHistoryBasicScheme
 import com.example.springbootkotlinhexagonaldemo.domain.enum.UserStatus
 import com.fasterxml.jackson.annotation.JsonFormat
 import java.time.Instant
 
-data class UserResponseDto(
+data class UserDetailResponseDto(
     val id: Int,
     val email: String,
     val name: String,
@@ -13,4 +15,6 @@ data class UserResponseDto(
     val createdAt: Instant,
     @field:JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ", timezone = "UTC")
     val updatedAt: Instant,
+    val mileage: MileageBasicScheme,
+    val mileageHistories: List<MileageHistoryBasicScheme>,
 )

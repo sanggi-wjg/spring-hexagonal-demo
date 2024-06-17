@@ -1,4 +1,4 @@
-package com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.response.scheme
+package com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.dto.response.scheme
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import java.time.Instant

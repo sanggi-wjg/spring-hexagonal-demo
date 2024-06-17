@@ -1,10 +1,10 @@
 package com.example.springbootkotlinhexagonaldemo.infrastructure.controller
 
-import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.request.UserCreationDto
-import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.request.UserModificationDto
-import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.response.UserDetailResponseDto
-import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.response.UserResponseDto
-import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.response.scheme.MileageBasicScheme
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.dto.request.UserCreationRequestDto
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.dto.request.UserModificationRequestDto
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.dto.response.UserDetailResponseDto
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.dto.response.UserResponseDto
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.dto.response.scheme.MileageBasicScheme
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository.MileageHistoryRepository
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository.MileageRepository
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository.UserRepository
@@ -51,7 +51,7 @@ class UserControllerIntegrationTest(
 
     test("[POST] /api/v1/users") {
         // given
-        val request = UserCreationDto(
+        val request = UserCreationRequestDto(
             email = "${UUID.randomUUID()}@dev.com",
             name = "test",
         )
@@ -134,7 +134,7 @@ class UserControllerIntegrationTest(
         // given
         val user = factory.create()
 
-        val request = UserModificationDto(
+        val request = UserModificationRequestDto(
             email = "changed-${user.email}",
             name = "changed-${user.name}",
             userStatus = UserStatus.LEFT,

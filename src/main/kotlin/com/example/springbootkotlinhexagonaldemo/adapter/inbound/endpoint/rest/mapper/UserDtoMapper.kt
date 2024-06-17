@@ -1,9 +1,9 @@
-package com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.mapper
+package com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.mapper
 
-import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.response.UserDetailResponseDto
-import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.response.UserResponseDto
-import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.response.scheme.MileageBasicScheme
-import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.response.scheme.MileageHistoryBasicScheme
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.dto.response.UserDetailResponseDto
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.dto.response.UserResponseDto
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.dto.response.scheme.MileageBasicScheme
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.dto.response.scheme.MileageHistoryBasicScheme
 import com.example.springbootkotlinhexagonaldemo.domain.entity.Mileage
 import com.example.springbootkotlinhexagonaldemo.domain.entity.MileageHistory
 import com.example.springbootkotlinhexagonaldemo.domain.entity.User

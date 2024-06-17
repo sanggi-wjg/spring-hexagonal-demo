@@ -1,4 +1,4 @@
-package com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.adapter.dto.request
+package com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.dto.request
 
 import com.example.springbootkotlinhexagonaldemo.application.usecase.user.CreateUserUseCase
 import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
@@ -6,7 +6,7 @@ import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
 import jakarta.validation.constraints.NotBlank
 
 
-data class UserCreationDto(
+data class UserCreationRequestDto(
     @field:NotBlank()
     val email: String,
     @field:NotBlank()
