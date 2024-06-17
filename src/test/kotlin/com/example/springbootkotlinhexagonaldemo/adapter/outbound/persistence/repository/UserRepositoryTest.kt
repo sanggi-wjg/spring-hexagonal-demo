@@ -1,9 +1,7 @@
-package com.example.springbootkotlinhexagonaldemo.infrastructure.repository
+package com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository
 
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.entity.MileageJPAEntity
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.entity.UserJPAEntity
-import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository.MileageRepository
-import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository.UserRepository
 import com.example.springbootkotlinhexagonaldemo.domain.enum.UserStatus
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe

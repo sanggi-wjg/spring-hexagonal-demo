@@ -14,7 +14,7 @@ import java.net.URI
 
 @RestController
 @RequestMapping("/api/v1/users")
-class UserController(
+class UserRestController(
     private val readUsersUseCase: ReadUsersUseCase,
     private val readUserByIdUseCase: ReadUserByIdUseCase,
     private val createUserUseCase: CreateUserUseCase,

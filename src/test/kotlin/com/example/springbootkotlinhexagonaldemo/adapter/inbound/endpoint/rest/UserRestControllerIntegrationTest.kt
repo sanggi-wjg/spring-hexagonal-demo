@@ -1,4 +1,4 @@
-package com.example.springbootkotlinhexagonaldemo.infrastructure.controller
+package com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest
 
 import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.dto.request.UserCreationRequestDto
 import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.dto.request.UserModificationRequestDto
@@ -31,7 +31,7 @@ import java.util.*
 @EnableWebMvc
 @AutoConfigureMockMvc
 @Transactional
-class UserControllerIntegrationTest(
+class UserRestControllerIntegrationTest(
     private val mockMvc: MockMvc,
     private val objectMapper: ObjectMapper,
     private val userRepository: UserRepository,
