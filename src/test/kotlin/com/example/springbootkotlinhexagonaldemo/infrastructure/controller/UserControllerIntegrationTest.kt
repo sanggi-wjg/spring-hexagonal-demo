@@ -49,7 +49,7 @@ class UserControllerIntegrationTest(
         factory.deleteAll()
     }
 
-    test("[POST] /users") {
+    test("[POST] /api/v1/users") {
         // given
         val request = UserCreationDto(
             email = "${UUID.randomUUID()}@dev.com",
@@ -58,7 +58,7 @@ class UserControllerIntegrationTest(
 
         // when ~ then
         mockMvc.perform(
-            MockMvcRequestBuilders.post("/users")
+            MockMvcRequestBuilders.post("/api/v1/users")
                 .contentType("application/json")
                 .content(objectMapper.writeValueAsString(request))
         )
@@ -72,7 +72,7 @@ class UserControllerIntegrationTest(
             )
     }
 
-    test("[GET] /users") {
+    test("[GET] /api/v1/users") {
         // given
         val user1 = factory.create(mileagePoint = 123)
         val user2 = factory.create(userStatus = UserStatus.LEFT, mileagePoint = 456)
@@ -98,13 +98,13 @@ class UserControllerIntegrationTest(
         val response = objectMapper.writeValueAsString(expected)
 
         // when ~ then
-        mockMvc.perform(MockMvcRequestBuilders.get("/users"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/users"))
             .andExpect(MockMvcResultMatchers.status().isOk)
             .andDo(MockMvcResultHandlers.print())
             .andExpect(MockMvcResultMatchers.content().string(response))
     }
 
-    test("[GET] /users/{userId}") {
+    test("[GET] /api/v1/users/{userId}") {
         // given
         val user = factory.create()
 
@@ -124,13 +124,13 @@ class UserControllerIntegrationTest(
         val response = objectMapper.writeValueAsString(expected)
 
         // when ~ then
-        mockMvc.perform(MockMvcRequestBuilders.get("/users/${user.id}"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/users/${user.id}"))
             .andExpect(MockMvcResultMatchers.status().isOk)
             .andDo(MockMvcResultHandlers.print())
             .andExpect(MockMvcResultMatchers.content().string(response))
     }
 
-    test("[PATCH] /users/{userId}") {
+    test("[PATCH] /api/v1/users/{userId}") {
         // given
         val user = factory.create()
 
@@ -142,7 +142,7 @@ class UserControllerIntegrationTest(
 
         // when ~ then
         mockMvc.perform(
-            MockMvcRequestBuilders.patch("/users/${user.id}")
+            MockMvcRequestBuilders.patch("/api/v1/users/${user.id}")
                 .contentType("application/json")
                 .content(objectMapper.writeValueAsString(request))
         )
@@ -165,12 +165,12 @@ class UserControllerIntegrationTest(
             )
     }
 
-    test("[DELETE] /users/{userId}") {
+    test("[DELETE] /api/v1/users/{userId}") {
         // given
         val user = factory.create()
 
         // when
-        mockMvc.perform(MockMvcRequestBuilders.delete("/users/${user.id}"))
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/users/${user.id}"))
             .andExpect(MockMvcResultMatchers.status().isNoContent)
             .andDo(MockMvcResultHandlers.print())
 
