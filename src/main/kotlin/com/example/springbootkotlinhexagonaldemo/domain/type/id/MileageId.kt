@@ -1,6 +1,7 @@
 package com.example.springbootkotlinhexagonaldemo.domain.type.id
 
-data class MileageId(
+@JvmInline
+value class MileageId(
     val value: Int
 ) {
     init {

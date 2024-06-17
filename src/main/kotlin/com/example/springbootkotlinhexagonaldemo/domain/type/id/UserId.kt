@@ -1,6 +1,7 @@
 package com.example.springbootkotlinhexagonaldemo.domain.type.id
 
-data class UserId(
+@JvmInline
+value class UserId(
     val value: Int
 ) {
     init {

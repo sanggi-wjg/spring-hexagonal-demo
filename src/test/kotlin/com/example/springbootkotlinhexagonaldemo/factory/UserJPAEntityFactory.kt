@@ -1,11 +1,11 @@
 package com.example.springbootkotlinhexagonaldemo.factory
 
-import com.example.springbootkotlinhexagonaldemo.infrastructure.entity.MileageJPAEntity
-import com.example.springbootkotlinhexagonaldemo.infrastructure.entity.UserJPAEntity
-import com.example.springbootkotlinhexagonaldemo.infrastructure.enum.UserStatus
-import com.example.springbootkotlinhexagonaldemo.infrastructure.repository.MileageHistoryRepository
-import com.example.springbootkotlinhexagonaldemo.infrastructure.repository.MileageRepository
-import com.example.springbootkotlinhexagonaldemo.infrastructure.repository.UserRepository
+import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.entity.MileageJPAEntity
+import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.entity.UserJPAEntity
+import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository.MileageHistoryRepository
+import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository.MileageRepository
+import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository.UserRepository
+import com.example.springbootkotlinhexagonaldemo.domain.enum.UserStatus
 import java.time.Instant
 import java.util.*
 

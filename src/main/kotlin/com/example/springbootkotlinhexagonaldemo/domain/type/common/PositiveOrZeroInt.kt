@@ -1,6 +1,7 @@
 package com.example.springbootkotlinhexagonaldemo.domain.type.common
 
-data class PositiveOrZeroInt(
+@JvmInline
+value class PositiveOrZeroInt(
     val value: Int,
 ) {
     init {

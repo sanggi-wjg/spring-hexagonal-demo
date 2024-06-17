@@ -1,6 +1,7 @@
 package com.example.springbootkotlinhexagonaldemo.domain.type.common
 
-data class Email(
+@JvmInline
+value class Email(
     val value: String
 ) {
     init {

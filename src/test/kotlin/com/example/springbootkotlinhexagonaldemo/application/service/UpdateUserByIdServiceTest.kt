@@ -5,12 +5,12 @@ import com.example.springbootkotlinhexagonaldemo.application.port.persistence.Wr
 import com.example.springbootkotlinhexagonaldemo.application.service.user.UpdateUserByIdService
 import com.example.springbootkotlinhexagonaldemo.application.usecase.user.UpdateUserByIdUseCase
 import com.example.springbootkotlinhexagonaldemo.domain.entity.User
+import com.example.springbootkotlinhexagonaldemo.domain.enum.UserStatus
 import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
 import com.example.springbootkotlinhexagonaldemo.domain.type.embed.Audit
 import com.example.springbootkotlinhexagonaldemo.domain.type.embed.UserPersonalInfo
 import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
 import com.example.springbootkotlinhexagonaldemo.factory.UserFactory
-import com.example.springbootkotlinhexagonaldemo.infrastructure.enum.UserStatus
 import com.ninjasquad.springmockk.MockkBean
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.equality.shouldBeEqualToComparingFields

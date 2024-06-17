@@ -1,13 +1,13 @@
 package com.example.springbootkotlinhexagonaldemo.domain.entity
 
+import com.example.springbootkotlinhexagonaldemo.domain.annotations.RootEntity
+import com.example.springbootkotlinhexagonaldemo.domain.enum.UserStatus
 import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
 import com.example.springbootkotlinhexagonaldemo.domain.type.common.plus
 import com.example.springbootkotlinhexagonaldemo.domain.type.embed.Audit
 import com.example.springbootkotlinhexagonaldemo.domain.type.embed.UserPersonalInfo
 import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
 import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
-import com.example.springbootkotlinhexagonaldemo.infrastructure.annotations.RootEntity
-import com.example.springbootkotlinhexagonaldemo.infrastructure.enum.UserStatus
 import java.time.Instant
 
 @RootEntity

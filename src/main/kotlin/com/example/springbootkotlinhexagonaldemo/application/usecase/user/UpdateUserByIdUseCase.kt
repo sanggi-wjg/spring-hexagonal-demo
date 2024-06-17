@@ -1,10 +1,10 @@
 package com.example.springbootkotlinhexagonaldemo.application.usecase.user
 
 import com.example.springbootkotlinhexagonaldemo.domain.entity.User
+import com.example.springbootkotlinhexagonaldemo.domain.enum.UserStatus
 import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
 import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
 import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
-import com.example.springbootkotlinhexagonaldemo.infrastructure.enum.UserStatus
 
 interface UpdateUserByIdUseCase {
 

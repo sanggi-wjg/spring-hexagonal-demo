@@ -2,6 +2,7 @@ package com.example.springbootkotlinhexagonaldemo.factory
 
 import com.example.springbootkotlinhexagonaldemo.domain.entity.Mileage
 import com.example.springbootkotlinhexagonaldemo.domain.entity.User
+import com.example.springbootkotlinhexagonaldemo.domain.enum.UserStatus
 import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
 import com.example.springbootkotlinhexagonaldemo.domain.type.common.toPositiveOrZeroInt
 import com.example.springbootkotlinhexagonaldemo.domain.type.embed.Audit
@@ -9,7 +10,6 @@ import com.example.springbootkotlinhexagonaldemo.domain.type.embed.UserPersonalI
 import com.example.springbootkotlinhexagonaldemo.domain.type.id.MileageId
 import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
 import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
-import com.example.springbootkotlinhexagonaldemo.infrastructure.enum.UserStatus
 import java.time.Instant
 
 object UserFactory {

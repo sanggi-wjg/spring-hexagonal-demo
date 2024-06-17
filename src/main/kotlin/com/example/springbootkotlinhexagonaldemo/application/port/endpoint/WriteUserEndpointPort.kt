@@ -1,9 +1,9 @@
 package com.example.springbootkotlinhexagonaldemo.application.port.endpoint
 
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.controller.dto.response.UserResponseDto
 import com.example.springbootkotlinhexagonaldemo.application.usecase.user.CreateUserUseCase
 import com.example.springbootkotlinhexagonaldemo.application.usecase.user.DeleteUserByIdUseCase
 import com.example.springbootkotlinhexagonaldemo.application.usecase.user.UpdateUserByIdUseCase
-import com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.response.UserResponseDto
 
 interface WriteUserEndpointPort {
 

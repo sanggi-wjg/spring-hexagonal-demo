@@ -1,15 +1,15 @@
 package com.example.springbootkotlinhexagonaldemo.infrastructure.controller
 
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.controller.dto.request.UserCreationDto
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.controller.dto.request.UserModificationDto
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.controller.dto.response.UserDetailResponseDto
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.controller.dto.response.UserResponseDto
+import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.controller.dto.response.scheme.MileageBasicScheme
+import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository.MileageHistoryRepository
+import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository.MileageRepository
+import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository.UserRepository
+import com.example.springbootkotlinhexagonaldemo.domain.enum.UserStatus
 import com.example.springbootkotlinhexagonaldemo.factory.UserJPAEntityFactory
-import com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.request.UserCreationDto
-import com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.request.UserModificationDto
-import com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.response.UserDetailResponseDto
-import com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.response.UserResponseDto
-import com.example.springbootkotlinhexagonaldemo.infrastructure.controller.dto.scheme.MileageScheme
-import com.example.springbootkotlinhexagonaldemo.infrastructure.enum.UserStatus
-import com.example.springbootkotlinhexagonaldemo.infrastructure.repository.MileageHistoryRepository
-import com.example.springbootkotlinhexagonaldemo.infrastructure.repository.MileageRepository
-import com.example.springbootkotlinhexagonaldemo.infrastructure.repository.UserRepository
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
@@ -115,7 +115,7 @@ class UserControllerIntegrationTest(
             userStatus = user.userStatus,
             createdAt = user.createdAt,
             updatedAt = user.updatedAt,
-            mileage = MileageScheme(
+            mileage = MileageBasicScheme(
                 id = user.mileage.id!!,
                 point = user.mileage.point,
             ),
