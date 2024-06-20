@@ -1,10 +1,10 @@
 package com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.adapter.mapper
 
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.entity.MileageHistoryJPAEntity
-import com.example.springbootkotlinhexagonaldemo.domain.entity.MileageHistory
-import com.example.springbootkotlinhexagonaldemo.domain.type.common.toPositiveOrZeroInt
-import com.example.springbootkotlinhexagonaldemo.domain.type.embed.Audit
-import com.example.springbootkotlinhexagonaldemo.domain.type.id.MileageHistoryId
+import com.raynor.hexagonal.domain.entity.MileageHistory
+import com.raynor.hexagonal.domain.type.common.toPositiveOrZeroInt
+import com.raynor.hexagonal.domain.type.embed.Audit
+import com.raynor.hexagonal.domain.type.id.MileageHistoryId
 
 object MileageHistoryMapper {
 

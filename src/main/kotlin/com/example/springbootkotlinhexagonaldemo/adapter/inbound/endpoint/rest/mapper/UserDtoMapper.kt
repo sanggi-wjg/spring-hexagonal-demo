@@ -4,9 +4,9 @@ import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.d
 import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.dto.response.UserResponseDto
 import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.dto.response.scheme.MileageBasicScheme
 import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.dto.response.scheme.MileageHistoryBasicScheme
-import com.example.springbootkotlinhexagonaldemo.domain.entity.Mileage
-import com.example.springbootkotlinhexagonaldemo.domain.entity.MileageHistory
-import com.example.springbootkotlinhexagonaldemo.domain.entity.User
+import com.raynor.hexagonal.domain.entity.Mileage
+import com.raynor.hexagonal.domain.entity.MileageHistory
+import com.raynor.hexagonal.domain.entity.User
 
 object UserDtoMapper {
 

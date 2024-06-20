@@ -1,15 +1,15 @@
 package com.example.springbootkotlinhexagonaldemo.factory
 
-import com.example.springbootkotlinhexagonaldemo.domain.entity.Mileage
-import com.example.springbootkotlinhexagonaldemo.domain.entity.User
-import com.example.springbootkotlinhexagonaldemo.domain.enum.UserStatus
-import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
-import com.example.springbootkotlinhexagonaldemo.domain.type.common.toPositiveOrZeroInt
-import com.example.springbootkotlinhexagonaldemo.domain.type.embed.Audit
-import com.example.springbootkotlinhexagonaldemo.domain.type.embed.UserPersonalInfo
-import com.example.springbootkotlinhexagonaldemo.domain.type.id.MileageId
-import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
-import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
+import com.raynor.hexagonal.domain.entity.Mileage
+import com.raynor.hexagonal.domain.entity.User
+import com.raynor.hexagonal.domain.enum.UserStatus
+import com.raynor.hexagonal.domain.type.common.Email
+import com.raynor.hexagonal.domain.type.common.toPositiveOrZeroInt
+import com.raynor.hexagonal.domain.type.embed.Audit
+import com.raynor.hexagonal.domain.type.embed.UserPersonalInfo
+import com.raynor.hexagonal.domain.type.id.MileageId
+import com.raynor.hexagonal.domain.type.id.UserId
+import com.raynor.hexagonal.domain.type.personal.UserName
 import java.time.Instant
 
 object UserFactory {

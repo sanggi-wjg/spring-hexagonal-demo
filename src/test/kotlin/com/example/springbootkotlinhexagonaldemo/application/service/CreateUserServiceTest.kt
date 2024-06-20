@@ -1,11 +1,11 @@
 package com.example.springbootkotlinhexagonaldemo.application.service
 
-import com.example.springbootkotlinhexagonaldemo.application.service.user.CreateUserService
-import com.example.springbootkotlinhexagonaldemo.application.usecase.user.CreateUserUseCase
-import com.example.springbootkotlinhexagonaldemo.domain.entity.Mileage
-import com.example.springbootkotlinhexagonaldemo.domain.entity.User
-import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
-import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
+import com.raynor.hexagonal.application.port.inbound.usecase.CreateUserUseCase
+import com.raynor.hexagonal.application.service.user.CreateUserService
+import com.raynor.hexagonal.domain.entity.Mileage
+import com.raynor.hexagonal.domain.entity.User
+import com.raynor.hexagonal.domain.type.common.Email
+import com.raynor.hexagonal.domain.type.personal.UserName
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.equality.shouldBeEqualToIgnoringFields

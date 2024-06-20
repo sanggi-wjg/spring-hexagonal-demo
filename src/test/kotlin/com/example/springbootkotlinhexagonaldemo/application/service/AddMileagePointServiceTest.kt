@@ -1,14 +1,14 @@
 package com.example.springbootkotlinhexagonaldemo.application.service
 
-import com.example.springbootkotlinhexagonaldemo.application.service.user.AddMileagePointService
-import com.example.springbootkotlinhexagonaldemo.application.service.user.CreateUserService
-import com.example.springbootkotlinhexagonaldemo.application.service.user.ReadUserByIdService
-import com.example.springbootkotlinhexagonaldemo.application.usecase.user.AddMileagePointUseCase
-import com.example.springbootkotlinhexagonaldemo.application.usecase.user.CreateUserUseCase
-import com.example.springbootkotlinhexagonaldemo.application.usecase.user.ReadUserByIdUseCase
-import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
-import com.example.springbootkotlinhexagonaldemo.domain.type.common.toPositiveOrZeroInt
-import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
+import com.raynor.hexagonal.application.port.inbound.usecase.AddMileagePointUseCase
+import com.raynor.hexagonal.application.port.inbound.usecase.CreateUserUseCase
+import com.raynor.hexagonal.application.port.inbound.usecase.ReadUserByIdUseCase
+import com.raynor.hexagonal.application.service.user.AddMileagePointService
+import com.raynor.hexagonal.application.service.user.CreateUserService
+import com.raynor.hexagonal.application.service.user.ReadUserByIdService
+import com.raynor.hexagonal.domain.type.common.Email
+import com.raynor.hexagonal.domain.type.common.toPositiveOrZeroInt
+import com.raynor.hexagonal.domain.type.personal.UserName
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import org.springframework.boot.test.context.SpringBootTest

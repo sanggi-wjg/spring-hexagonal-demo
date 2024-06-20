@@ -5,7 +5,7 @@ import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.en
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository.MileageHistoryRepository
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository.MileageRepository
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository.UserRepository
-import com.example.springbootkotlinhexagonaldemo.domain.enum.UserStatus
+import com.raynor.hexagonal.domain.enum.UserStatus
 import java.time.Instant
 import java.util.*
 

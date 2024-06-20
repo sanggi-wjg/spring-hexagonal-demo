@@ -1,6 +1,6 @@
 package com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.entity
 
-import com.example.springbootkotlinhexagonaldemo.domain.enum.UserStatus
+import com.raynor.hexagonal.domain.enum.UserStatus
 import jakarta.persistence.*
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Size

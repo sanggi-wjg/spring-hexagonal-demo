@@ -2,10 +2,10 @@ package com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.a
 
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.adapter.mapper.UserMapper
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository.UserRepository
-import com.example.springbootkotlinhexagonaldemo.application.port.persistence.ReadUserPort
-import com.example.springbootkotlinhexagonaldemo.domain.entity.User
-import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
-import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
+import com.raynor.hexagonal.application.port.outbound.persistence.ReadUserPort
+import com.raynor.hexagonal.domain.entity.User
+import com.raynor.hexagonal.domain.type.common.Email
+import com.raynor.hexagonal.domain.type.id.UserId
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
 

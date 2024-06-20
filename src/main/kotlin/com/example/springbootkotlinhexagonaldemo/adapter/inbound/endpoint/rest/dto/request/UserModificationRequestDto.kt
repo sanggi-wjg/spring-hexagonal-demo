@@ -1,10 +1,10 @@
 package com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.dto.request
 
-import com.example.springbootkotlinhexagonaldemo.application.usecase.user.UpdateUserByIdUseCase
-import com.example.springbootkotlinhexagonaldemo.domain.enum.UserStatus
-import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
-import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
-import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
+import com.raynor.hexagonal.application.port.inbound.usecase.UpdateUserByIdUseCase
+import com.raynor.hexagonal.domain.enum.UserStatus
+import com.raynor.hexagonal.domain.type.common.Email
+import com.raynor.hexagonal.domain.type.id.UserId
+import com.raynor.hexagonal.domain.type.personal.UserName
 
 data class UserModificationRequestDto(
     val email: String? = null,

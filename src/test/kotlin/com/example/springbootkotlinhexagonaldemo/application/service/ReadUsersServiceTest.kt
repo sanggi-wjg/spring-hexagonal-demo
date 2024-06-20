@@ -1,10 +1,10 @@
 package com.example.springbootkotlinhexagonaldemo.application.service
 
-import com.example.springbootkotlinhexagonaldemo.application.port.persistence.ReadUserPort
-import com.example.springbootkotlinhexagonaldemo.application.service.user.ReadUsersService
-import com.example.springbootkotlinhexagonaldemo.application.usecase.user.ReadUsersUseCase
 import com.example.springbootkotlinhexagonaldemo.factory.UserFactory
 import com.ninjasquad.springmockk.MockkBean
+import com.raynor.hexagonal.application.port.inbound.usecase.ReadUsersUseCase
+import com.raynor.hexagonal.application.port.outbound.persistence.ReadUserPort
+import com.raynor.hexagonal.application.service.user.ReadUsersService
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.equality.shouldBeEqualToComparingFields
 import io.mockk.clearAllMocks

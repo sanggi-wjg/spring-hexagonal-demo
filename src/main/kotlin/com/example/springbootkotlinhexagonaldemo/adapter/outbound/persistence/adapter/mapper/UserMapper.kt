@@ -2,12 +2,12 @@ package com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.a
 
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.entity.MileageJPAEntity
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.entity.UserJPAEntity
-import com.example.springbootkotlinhexagonaldemo.domain.entity.User
-import com.example.springbootkotlinhexagonaldemo.domain.type.common.Email
-import com.example.springbootkotlinhexagonaldemo.domain.type.embed.Audit
-import com.example.springbootkotlinhexagonaldemo.domain.type.embed.UserPersonalInfo
-import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
-import com.example.springbootkotlinhexagonaldemo.domain.type.personal.UserName
+import com.raynor.hexagonal.domain.entity.User
+import com.raynor.hexagonal.domain.type.common.Email
+import com.raynor.hexagonal.domain.type.embed.Audit
+import com.raynor.hexagonal.domain.type.embed.UserPersonalInfo
+import com.raynor.hexagonal.domain.type.id.UserId
+import com.raynor.hexagonal.domain.type.personal.UserName
 
 object UserMapper {
 

@@ -10,18 +10,45 @@ plugins {
     kotlin("plugin.jpa") version "1.9.22"
 }
 
-group = "com.example"
-version = "0.0.1-SNAPSHOT"
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
+allprojects {
+    repositories {
+        mavenCentral()
+    }
 }
 
-repositories {
-    mavenCentral()
+subprojects {
+    apply {
+        plugin("idea")
+        plugin("kotlin")
+        plugin("kotlin-kapt")
+        plugin("kotlin-spring")
+        plugin("kotlin-allopen")
+        plugin("org.springframework.boot")
+        plugin("io.spring.dependency-management")
+    }
+
+    group = "com.example"
+    version = "0.0.1-SNAPSHOT"
+    java {
+        sourceCompatibility = JavaVersion.VERSION_17
+    }
+
+    tasks.withType<KotlinCompile> {
+        kotlinOptions {
+            freeCompilerArgs += "-Xjsr305=strict"
+            jvmTarget = "17"
+        }
+    }
+
+    tasks.withType<Test> {
+        useJUnitPlatform()
+    }
 }
 
 dependencies {
+    implementation(project(":domain"))
+    implementation(project(":application"))
+
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -49,13 +76,3 @@ dependencies {
     testImplementation("io.kotest.extensions:kotest-extensions-spring:1.1.2")
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs += "-Xjsr305=strict"
-        jvmTarget = "17"
-    }
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform()
-}

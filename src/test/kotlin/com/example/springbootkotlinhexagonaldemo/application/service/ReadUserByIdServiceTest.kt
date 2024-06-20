@@ -1,11 +1,11 @@
 package com.example.springbootkotlinhexagonaldemo.application.service
 
-import com.example.springbootkotlinhexagonaldemo.application.port.persistence.ReadUserPort
-import com.example.springbootkotlinhexagonaldemo.application.service.user.ReadUserByIdService
-import com.example.springbootkotlinhexagonaldemo.application.usecase.user.ReadUserByIdUseCase
-import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
 import com.example.springbootkotlinhexagonaldemo.factory.UserFactory
 import com.ninjasquad.springmockk.MockkBean
+import com.raynor.hexagonal.application.port.inbound.usecase.ReadUserByIdUseCase
+import com.raynor.hexagonal.application.port.outbound.persistence.ReadUserPort
+import com.raynor.hexagonal.application.service.user.ReadUserByIdService
+import com.raynor.hexagonal.domain.type.id.UserId
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.equality.shouldBeEqualToComparingFields

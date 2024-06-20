@@ -2,8 +2,8 @@ package com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.
 
 import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.dto.response.scheme.MileageBasicScheme
 import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.dto.response.scheme.MileageHistoryBasicScheme
-import com.example.springbootkotlinhexagonaldemo.domain.enum.UserStatus
 import com.fasterxml.jackson.annotation.JsonFormat
+import com.raynor.hexagonal.domain.enum.UserStatus
 import java.time.Instant
 
 data class UserDetailResponseDto(

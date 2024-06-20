@@ -5,8 +5,8 @@ import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.d
 import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.dto.response.UserDetailResponseDto
 import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.dto.response.UserResponseDto
 import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.mapper.UserDtoMapper
-import com.example.springbootkotlinhexagonaldemo.application.usecase.user.*
-import com.example.springbootkotlinhexagonaldemo.domain.type.id.UserId
+import com.raynor.hexagonal.application.port.inbound.usecase.*
+import com.raynor.hexagonal.domain.type.id.UserId
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

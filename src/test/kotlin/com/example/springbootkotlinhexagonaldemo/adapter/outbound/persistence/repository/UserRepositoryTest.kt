@@ -2,7 +2,7 @@ package com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.r
 
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.entity.MileageJPAEntity
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.entity.UserJPAEntity
-import com.example.springbootkotlinhexagonaldemo.domain.enum.UserStatus
+import com.raynor.hexagonal.domain.enum.UserStatus
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import org.springframework.boot.test.context.SpringBootTest

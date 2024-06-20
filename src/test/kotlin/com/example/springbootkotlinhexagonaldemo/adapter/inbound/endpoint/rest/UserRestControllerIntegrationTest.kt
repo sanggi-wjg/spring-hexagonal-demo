@@ -8,9 +8,9 @@ import com.example.springbootkotlinhexagonaldemo.adapter.inbound.endpoint.rest.d
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository.MileageHistoryRepository
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository.MileageRepository
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository.UserRepository
-import com.example.springbootkotlinhexagonaldemo.domain.enum.UserStatus
 import com.example.springbootkotlinhexagonaldemo.factory.UserJPAEntityFactory
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.raynor.hexagonal.domain.enum.UserStatus
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import jakarta.transaction.Transactional

@@ -3,8 +3,8 @@ package com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.a
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.adapter.mapper.MileageHistoryMapper
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.entity.MileageHistoryJPAEntity
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository.MileageHistoryRepository
-import com.example.springbootkotlinhexagonaldemo.application.port.persistence.WriteMileageHistoryPort
-import com.example.springbootkotlinhexagonaldemo.domain.entity.MileageHistory
+import com.raynor.hexagonal.application.port.outbound.persistence.WriteMileageHistoryPort
+import com.raynor.hexagonal.domain.entity.MileageHistory
 import org.springframework.stereotype.Component
 
 @Component

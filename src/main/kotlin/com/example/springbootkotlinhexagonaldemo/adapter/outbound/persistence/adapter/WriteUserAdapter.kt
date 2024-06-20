@@ -3,8 +3,8 @@ package com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.a
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.adapter.mapper.UserMapper
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.entity.UserJPAEntity
 import com.example.springbootkotlinhexagonaldemo.adapter.outbound.persistence.repository.UserRepository
-import com.example.springbootkotlinhexagonaldemo.application.port.persistence.WriteUserPort
-import com.example.springbootkotlinhexagonaldemo.domain.entity.User
+import com.raynor.hexagonal.application.port.outbound.persistence.WriteUserPort
+import com.raynor.hexagonal.domain.entity.User
 import org.springframework.stereotype.Component
 
 @Component
