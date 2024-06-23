@@ -3,13 +3,9 @@ package com.raynor.hexagonal.application.service.user
 import com.raynor.hexagonal.application.port.inbound.usecase.ReadUsersUseCase
 import com.raynor.hexagonal.application.port.outbound.persistence.ReadUserPort
 import com.raynor.hexagonal.domain.entity.User
-import org.springframework.stereotype.Component
-import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Transactional(readOnly = true)
-@Service
-@Component
 class ReadUsersService(
     private val readUserPort: ReadUserPort,
 ) : ReadUsersUseCase {
