@@ -1,6 +1,5 @@
 package com.raynor.hexagonal.adapter.outbound.persistence.adapter.mapper
 
-import com.raynor.hexagonal.adapter.outbound.persistence.entity.MileageJPAEntity
 import com.raynor.hexagonal.adapter.outbound.persistence.entity.UserJPAEntity
 import com.raynor.hexagonal.domain.entity.user.User
 import com.raynor.hexagonal.domain.type.common.Email
@@ -40,10 +39,7 @@ object UserMapper {
             userStatus = user.userStatus,
             createdAt = user.audit.createdAt,
             updatedAt = user.audit.updatedAt,
-            mileage = MileageJPAEntity(
-                id = user.mileage.id?.value,
-                point = user.mileage.point.value
-            )
+            mileage = MileageMapper.toJPAEntity(user.mileage),
         )
     }
 }
