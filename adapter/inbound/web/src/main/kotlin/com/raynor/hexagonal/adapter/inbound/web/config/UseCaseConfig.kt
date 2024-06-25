@@ -5,9 +5,9 @@ import com.raynor.hexagonal.application.port.outbound.persistence.WriteMileagePo
 import com.raynor.hexagonal.application.port.outbound.persistence.WriteUserPort
 import com.raynor.hexagonal.application.service.user.*
 import org.springframework.context.annotation.Bean
-import org.springframework.stereotype.Component
+import org.springframework.context.annotation.Configuration
 
-@Component
+@Configuration
 class UseCaseConfig {
 
     @Bean

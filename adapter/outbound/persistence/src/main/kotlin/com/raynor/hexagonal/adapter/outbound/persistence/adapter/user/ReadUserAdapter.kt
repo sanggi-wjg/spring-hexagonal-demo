@@ -1,9 +1,9 @@
-package com.raynor.hexagonal.adapter.outbound.persistence.adapter
+package com.raynor.hexagonal.adapter.outbound.persistence.adapter.user
 
 import com.raynor.hexagonal.adapter.outbound.persistence.adapter.mapper.UserMapper
 import com.raynor.hexagonal.adapter.outbound.persistence.repository.UserRepository
 import com.raynor.hexagonal.application.port.outbound.persistence.ReadUserPort
-import com.raynor.hexagonal.domain.entity.User
+import com.raynor.hexagonal.domain.entity.user.User
 import com.raynor.hexagonal.domain.type.common.Email
 import com.raynor.hexagonal.domain.type.id.UserId
 import org.springframework.data.repository.findByIdOrNull

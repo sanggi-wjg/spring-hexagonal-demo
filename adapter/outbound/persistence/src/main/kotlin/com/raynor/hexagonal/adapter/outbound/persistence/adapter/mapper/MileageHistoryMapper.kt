@@ -1,7 +1,7 @@
 package com.raynor.hexagonal.adapter.outbound.persistence.adapter.mapper
 
 import com.raynor.hexagonal.adapter.outbound.persistence.entity.MileageHistoryJPAEntity
-import com.raynor.hexagonal.domain.entity.MileageHistory
+import com.raynor.hexagonal.domain.entity.user.MileageHistory
 import com.raynor.hexagonal.domain.type.common.toPositiveOrZeroInt
 import com.raynor.hexagonal.domain.type.embed.Audit
 import com.raynor.hexagonal.domain.type.id.MileageHistoryId

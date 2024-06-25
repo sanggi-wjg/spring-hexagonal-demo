@@ -2,7 +2,7 @@ package com.raynor.hexagonal.adapter.outbound.persistence.adapter.mapper
 
 import com.raynor.hexagonal.adapter.outbound.persistence.entity.MileageJPAEntity
 import com.raynor.hexagonal.adapter.outbound.persistence.entity.UserJPAEntity
-import com.raynor.hexagonal.domain.entity.User
+import com.raynor.hexagonal.domain.entity.user.User
 import com.raynor.hexagonal.domain.type.common.Email
 import com.raynor.hexagonal.domain.type.embed.Audit
 import com.raynor.hexagonal.domain.type.embed.UserPersonalInfo

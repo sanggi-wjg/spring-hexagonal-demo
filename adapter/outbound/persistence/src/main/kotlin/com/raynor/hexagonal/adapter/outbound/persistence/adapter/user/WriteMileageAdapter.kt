@@ -1,10 +1,10 @@
-package com.raynor.hexagonal.adapter.outbound.persistence.adapter
+package com.raynor.hexagonal.adapter.outbound.persistence.adapter.user
 
 import com.raynor.hexagonal.adapter.outbound.persistence.adapter.mapper.MileageMapper
 import com.raynor.hexagonal.adapter.outbound.persistence.entity.MileageJPAEntity
 import com.raynor.hexagonal.adapter.outbound.persistence.repository.MileageRepository
 import com.raynor.hexagonal.application.port.outbound.persistence.WriteMileagePort
-import com.raynor.hexagonal.domain.entity.Mileage
+import com.raynor.hexagonal.domain.entity.user.Mileage
 
 class WriteMileageAdapter(
     private val mileageRepository: MileageRepository,

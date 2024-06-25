@@ -1,17 +1,19 @@
 package com.raynor.hexagonal.adapter.outbound.persistence.config
 
-import com.raynor.hexagonal.adapter.outbound.persistence.adapter.ReadUserAdapter
-import com.raynor.hexagonal.adapter.outbound.persistence.adapter.WriteMileageAdapter
-import com.raynor.hexagonal.adapter.outbound.persistence.adapter.WriteMileageHistoryAdapter
-import com.raynor.hexagonal.adapter.outbound.persistence.adapter.WriteUserAdapter
+import com.raynor.hexagonal.adapter.outbound.persistence.adapter.user.ReadUserAdapter
+import com.raynor.hexagonal.adapter.outbound.persistence.adapter.user.WriteMileageAdapter
+import com.raynor.hexagonal.adapter.outbound.persistence.adapter.user.WriteMileageHistoryAdapter
+import com.raynor.hexagonal.adapter.outbound.persistence.adapter.user.WriteUserAdapter
 import com.raynor.hexagonal.adapter.outbound.persistence.repository.MileageHistoryRepository
 import com.raynor.hexagonal.adapter.outbound.persistence.repository.MileageRepository
 import com.raynor.hexagonal.adapter.outbound.persistence.repository.UserRepository
 import org.springframework.context.annotation.Bean
-import org.springframework.stereotype.Component
+import org.springframework.context.annotation.Configuration
 
-@Component
-class AdapterConfig {
+@Configuration
+class PersistenceAdapterConfig(
+    private val userRepository: UserRepository
+) {
 
     @Bean
     fun writeUserPort(

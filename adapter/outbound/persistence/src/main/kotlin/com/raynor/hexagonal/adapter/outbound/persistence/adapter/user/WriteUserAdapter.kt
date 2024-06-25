@@ -1,10 +1,10 @@
-package com.raynor.hexagonal.adapter.outbound.persistence.adapter
+package com.raynor.hexagonal.adapter.outbound.persistence.adapter.user
 
 import com.raynor.hexagonal.adapter.outbound.persistence.adapter.mapper.UserMapper
 import com.raynor.hexagonal.adapter.outbound.persistence.entity.UserJPAEntity
 import com.raynor.hexagonal.adapter.outbound.persistence.repository.UserRepository
 import com.raynor.hexagonal.application.port.outbound.persistence.WriteUserPort
-import com.raynor.hexagonal.domain.entity.User
+import com.raynor.hexagonal.domain.entity.user.User
 
 class WriteUserAdapter(
     private val userRepository: UserRepository,

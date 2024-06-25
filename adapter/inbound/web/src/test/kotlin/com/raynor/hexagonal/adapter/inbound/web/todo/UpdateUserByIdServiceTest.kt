@@ -5,7 +5,7 @@ import com.raynor.hexagonal.application.port.inbound.usecase.UpdateUserByIdUseCa
 import com.raynor.hexagonal.application.port.outbound.persistence.ReadUserPort
 import com.raynor.hexagonal.application.port.outbound.persistence.WriteUserPort
 import com.raynor.hexagonal.application.service.user.UpdateUserByIdService
-import com.raynor.hexagonal.domain.entity.User
+import com.raynor.hexagonal.domain.entity.user.User
 import com.raynor.hexagonal.domain.enum.UserStatus
 import com.raynor.hexagonal.domain.type.common.Email
 import com.raynor.hexagonal.domain.type.embed.Audit

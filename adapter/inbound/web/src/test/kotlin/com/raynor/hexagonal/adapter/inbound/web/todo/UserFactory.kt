@@ -1,7 +1,7 @@
 package com.raynor.hexagonal.adapter.inbound.web.todo
 
-import com.raynor.hexagonal.domain.entity.Mileage
-import com.raynor.hexagonal.domain.entity.User
+import com.raynor.hexagonal.domain.entity.user.Mileage
+import com.raynor.hexagonal.domain.entity.user.User
 import com.raynor.hexagonal.domain.enum.UserStatus
 import com.raynor.hexagonal.domain.type.common.Email
 import com.raynor.hexagonal.domain.type.common.toPositiveOrZeroInt

@@ -1,4 +1,4 @@
-package com.raynor.hexagonal.domain.entity
+package com.raynor.hexagonal.domain.entity.user
 
 import com.raynor.hexagonal.domain.annotations.RootEntity
 import com.raynor.hexagonal.domain.enum.UserStatus

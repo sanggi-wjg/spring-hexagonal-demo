@@ -4,9 +4,9 @@ import com.raynor.hexagonal.adapter.inbound.web.rest.dto.response.UserDetailResp
 import com.raynor.hexagonal.adapter.inbound.web.rest.dto.response.UserResponseDto
 import com.raynor.hexagonal.adapter.inbound.web.rest.dto.response.scheme.MileageBasicScheme
 import com.raynor.hexagonal.adapter.inbound.web.rest.dto.response.scheme.MileageHistoryBasicScheme
-import com.raynor.hexagonal.domain.entity.Mileage
-import com.raynor.hexagonal.domain.entity.MileageHistory
-import com.raynor.hexagonal.domain.entity.User
+import com.raynor.hexagonal.domain.entity.user.Mileage
+import com.raynor.hexagonal.domain.entity.user.MileageHistory
+import com.raynor.hexagonal.domain.entity.user.User
 
 object UserDtoMapper {
 

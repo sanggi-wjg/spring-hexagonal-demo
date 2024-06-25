@@ -4,7 +4,7 @@ import com.raynor.hexagonal.application.port.inbound.usecase.UpdateUserByIdUseCa
 import com.raynor.hexagonal.application.port.outbound.persistence.ReadUserPort
 import com.raynor.hexagonal.application.port.outbound.persistence.WriteUserPort
 import com.raynor.hexagonal.application.service.exception.UserNotFoundException
-import com.raynor.hexagonal.domain.entity.User
+import com.raynor.hexagonal.domain.entity.user.User
 import org.springframework.transaction.annotation.Transactional
 
 @Transactional
