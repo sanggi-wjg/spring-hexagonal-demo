@@ -29,7 +29,7 @@ class UserJPAEntityFactory(
                 name = "user_$uuid",
                 userStatus = userStatus,
                 createdAt = now,
-                updatedAt = Instant.now(),
+                updatedAt = now,
                 mileage = mileageRepository.save(
                     MileageJPAEntity(
                         id = null,

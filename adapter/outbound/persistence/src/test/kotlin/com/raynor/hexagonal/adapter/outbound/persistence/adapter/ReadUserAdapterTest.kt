@@ -51,8 +51,9 @@ class ReadUserAdapterTest(
         userFactory.deleteAll()
     }
 
-    test("123") {
+    test("[ReadUserAdapterTest] 유저 정보를 조회할 수 있어야 한다.") {
         val userEntities = (1..3).map { userFactory.create() }
+
         val firstUserEntity = userEntities.first()
         val firstUserId = UserId(firstUserEntity.id!!)
         val firstUserEmail = Email(firstUserEntity.email)

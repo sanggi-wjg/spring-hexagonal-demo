@@ -30,10 +30,7 @@ class User(
             name = name,
         ),
         userStatus = UserStatus.ACTIVE,
-        audit = Audit(
-            createdAt = Instant.now(),
-            updatedAt = Instant.now(),
-        ),
+        audit = Audit.now(),
         mileage = Mileage(),
         mileageHistories = mutableSetOf(),
     )
