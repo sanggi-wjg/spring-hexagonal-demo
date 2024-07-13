@@ -8,7 +8,7 @@ import java.time.Instant
 
 @Entity
 @Table(name = "user")
-class UserJPAEntity(
+open class UserJPAEntity(
     id: Int?,
     email: String,
     name: String,

@@ -12,9 +12,7 @@ class ReadUserAdapter(
     private val userRepository: UserRepository
 ) : ReadUserPort {
 
-    override fun findAll(
-        userIds: List<UserId>?
-    ): Collection<User> {
+    override fun findAll(): Collection<User> {
         return userRepository.findAll().map {
             UserMapper.toDomain(it)
         }

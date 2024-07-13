@@ -16,6 +16,7 @@ class User(
     val personalInfo: UserPersonalInfo,
     val userStatus: UserStatus,
     val audit: Audit,
+    // 적립금 부분은 컨텍스트 영역을 따로 가져가는게 좋아보이지만 데모 구현을 위해서 포함하여 구현
     val mileage: Mileage,
     val mileageHistories: Set<MileageHistory>
 ) {
@@ -49,18 +50,18 @@ class User(
     }
 
     fun copy(
-        personalInfo: UserPersonalInfo? = null,
-        userStatus: UserStatus? = null,
-        audit: Audit? = null,
-        mileage: Mileage? = null,
-        mileageHistories: Set<MileageHistory>? = null
+        personalInfo: UserPersonalInfo = this.personalInfo,
+        userStatus: UserStatus = this.userStatus,
+        audit: Audit = this.audit,
+        mileage: Mileage = this.mileage,
+        mileageHistories: Set<MileageHistory> = this.mileageHistories
     ) = User(
         id = this.id,
-        personalInfo = personalInfo ?: this.personalInfo,
-        userStatus = userStatus ?: this.userStatus,
-        audit = audit ?: this.audit,
-        mileage = mileage ?: this.mileage,
-        mileageHistories = mileageHistories ?: this.mileageHistories
+        personalInfo = personalInfo,
+        userStatus = userStatus,
+        audit = audit,
+        mileage = mileage,
+        mileageHistories = mileageHistories,
     )
 
     fun isActive(): Boolean {

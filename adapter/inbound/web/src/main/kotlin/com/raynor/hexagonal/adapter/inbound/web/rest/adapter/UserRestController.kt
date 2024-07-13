@@ -1,4 +1,4 @@
-package com.raynor.hexagonal.adapter.inbound.web.rest
+package com.raynor.hexagonal.adapter.inbound.web.rest.adapter
 
 import com.raynor.hexagonal.adapter.inbound.web.rest.dto.request.UserCreationRequestDto
 import com.raynor.hexagonal.adapter.inbound.web.rest.dto.request.UserModificationRequestDto

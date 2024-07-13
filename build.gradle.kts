@@ -37,6 +37,7 @@ subprojects {
         plugin("kotlin-kapt")
         plugin("kotlin-spring")
         plugin("kotlin-allopen")
+        plugin("kotlin-jpa")
         plugin("org.springframework.boot")
         plugin("io.spring.dependency-management")
     }

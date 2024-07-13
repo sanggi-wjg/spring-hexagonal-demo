@@ -51,3 +51,8 @@
 * 어댑터 경우 지금 구성에서 테스트 필요를 못 느끼겠어서 우선 삭제함.
     * 모킹을 하지 않고 해서?
     * 아니면 구조상 그런건가?
+
+## DDD 참고
+
+* https://devlos.tistory.com/51
+* https://blog.decorus.io/engineering/domain%20driven%20design/2022/05/06/design-and-management-of-aggregate-root-ddd.html

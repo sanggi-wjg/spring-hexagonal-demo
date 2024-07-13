@@ -11,6 +11,6 @@ class ReadUsersService(
 ) : ReadUsersUseCase {
 
     override fun readUsers(query: ReadUsersUseCase.Query): Collection<User> {
-        return readUserPort.findAll(query.userIds)
+        return readUserPort.findAll()
     }
 }

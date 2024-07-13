@@ -15,12 +15,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc
 @EnableWebMvc
 @AutoConfigureMockMvc
 @Transactional
-class UserRestControllerIntegrationTest(
+class UserRestControllerTest(
     private val mockMvc: MockMvc,
     private val objectMapper: ObjectMapper,
-//    private val userRepository: UserRepository,
-//    private val mileageRepository: MileageRepository,
-//    private val mileageHistoryRepository: MileageHistoryRepository,
 ) : FunSpec({
 
 //    val factory = UserJPAEntityFactory(

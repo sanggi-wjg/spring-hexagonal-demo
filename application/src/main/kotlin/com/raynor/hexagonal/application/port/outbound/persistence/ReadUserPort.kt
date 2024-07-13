@@ -6,9 +6,7 @@ import com.raynor.hexagonal.domain.type.id.UserId
 
 interface ReadUserPort {
 
-    fun findAll(
-        userIds: List<UserId>?
-    ): Collection<User>
+    fun findAll(): Collection<User>
 
     fun findById(id: UserId): User?
 

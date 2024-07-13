@@ -25,7 +25,7 @@ class Mileage(
     }
 
     fun copy(
-        point: PositiveOrZeroInt
+        point: PositiveOrZeroInt = this.point
     ) = Mileage(
         id = this.id,
         point = point
