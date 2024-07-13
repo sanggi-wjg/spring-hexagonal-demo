@@ -53,6 +53,7 @@ class CreateUserServiceTest(
         every { readUserPort.existsByEmail(command.email) } returns false
         every { writeUserPort.create(any()) } returns expectedUser
         every { writeMileagePort.create(any()) } returns expectedMileage
+
         // when
         val createdUser = createUserService.createUser(command)
 

@@ -4,7 +4,6 @@ import com.raynor.hexagonal.domain.type.common.PositiveOrZeroInt
 import com.raynor.hexagonal.domain.type.common.plus
 import com.raynor.hexagonal.domain.type.embed.Audit
 import com.raynor.hexagonal.domain.type.id.MileageHistoryId
-import java.time.Instant
 
 class MileageHistory(
     val id: MileageHistoryId?,
@@ -26,10 +25,7 @@ class MileageHistory(
         afterPoint = currentPoint.plus(inputPoint),
         point = inputPoint,
         message = message,
-        audit = Audit(
-            createdAt = Instant.now(),
-            updatedAt = Instant.now(),
-        ),
+        audit = Audit.now(),
         mileage = mileage,
     )
 

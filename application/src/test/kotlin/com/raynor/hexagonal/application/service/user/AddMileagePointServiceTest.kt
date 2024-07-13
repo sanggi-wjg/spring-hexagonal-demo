@@ -1,53 +1,87 @@
 package com.raynor.hexagonal.application.service.user
 
-import io.kotest.core.spec.style.BehaviorSpec
+import com.ninjasquad.springmockk.MockkBean
+import com.raynor.hexagonal.application.UserFactory
+import com.raynor.hexagonal.application.port.inbound.usecase.AddMileagePointUseCase
+import com.raynor.hexagonal.application.port.outbound.persistence.ReadUserPort
+import com.raynor.hexagonal.application.port.outbound.persistence.WriteMileageHistoryPort
+import com.raynor.hexagonal.application.port.outbound.persistence.WriteMileagePort
+import com.raynor.hexagonal.application.port.outbound.persistence.WriteUserPort
+import com.raynor.hexagonal.domain.entity.user.Mileage
+import com.raynor.hexagonal.domain.entity.user.MileageHistory
+import com.raynor.hexagonal.domain.type.common.toPositiveOrZeroInt
+import com.raynor.hexagonal.domain.type.id.MileageHistoryId
+import io.kotest.core.spec.style.FunSpec
+import io.kotest.matchers.equality.shouldBeEqualToComparingFields
+import io.mockk.clearAllMocks
+import io.mockk.every
+import io.mockk.unmockkAll
+import io.mockk.verify
 import org.springframework.boot.test.context.SpringBootTest
 
-@SpringBootTest
+@SpringBootTest(
+    classes = [
+        AddMileagePointService::class,
+    ]
+)
 class AddMileagePointServiceTest(
     private val addMileagePointService: AddMileagePointService,
-    private val createUserService: CreateUserService,
-    private val readUserByIdService: ReadUserByIdService,
-) : BehaviorSpec({
+    @MockkBean private val readUserPort: ReadUserPort,
+    @MockkBean private val writeUserPort: WriteUserPort,
+    @MockkBean private val writeMileagePort: WriteMileagePort,
+    @MockkBean private val writeMileageHistoryPort: WriteMileageHistoryPort,
+) : FunSpec({
 
-//    given("활성 상태 유저가 있을때") {
-//        val user = createUserService.createUser(
-//            CreateUserUseCase.Command(
-//                email = Email("${UUID.randomUUID()}@dev.com"),
-//                name = UserName("둘리"),
-//            )
-//        )
-//        val userId = user.id!!
-//
-//        `when`("적립금을 가감 받았다면") {
-//            val addPoint = 1234
-//            val minusPoint = -123
-//
-//            addMileagePointService.addMileagePoint(
-//                AddMileagePointUseCase.Command(
-//                    userId = userId,
-//                    mileagePoint = addPoint,
-//                    message = null,
-//                )
-//            )
-//            val updatedUser = addMileagePointService.addMileagePoint(
-//                AddMileagePointUseCase.Command(
-//                    userId = userId,
-//                    mileagePoint = minusPoint,
-//                    message = "잘못 발급하여 눈물을 머금고 차감 합니다."
-//                )
-//            )
-//
-//            then("적립금 변경과 적립금 변경 내역이 생성 되어야 한다.") {
-//                val findUser = readUserByIdService.readById(
-//                    ReadUserByIdUseCase.Query(
-//                        userId = userId
-//                    )
-//                )
-//                findUser shouldBe updatedUser
-//                findUser.mileage.point shouldBe 1111.toPositiveOrZeroInt()
-//                findUser.mileageHistories.size shouldBe 2
-//            }
-//        }
-//    }
+    beforeEach {
+        unmockkAll()
+        clearAllMocks()
+    }
+
+    test("유저 적립금 가감을 할 수 있어야 한다.") {
+        // given
+        val userFixture = UserFactory.create()
+        val command = AddMileagePointUseCase.Command(
+            userId = userFixture.id!!,
+            mileagePoint = 1234,
+            message = "1234 이벤트 당첨",
+        )
+        val expectedMileage = Mileage(userFixture.mileage.id, 1234.toPositiveOrZeroInt())
+        val expectedUser = userFixture.copy(
+            mileage = expectedMileage,
+            mileageHistories = setOf(
+                MileageHistory(
+                    id = MileageHistoryId(100),
+                    beforePoint = 0.toPositiveOrZeroInt(),
+                    afterPoint = 1234.toPositiveOrZeroInt(),
+                    point = 1234,
+                    message = "1234 이벤트 당첨",
+                    audit = userFixture.audit,
+                    mileage = expectedMileage,
+                ),
+            )
+        )
+
+        // mock
+        every {
+            readUserPort.findById(userFixture.id!!)
+        } returns expectedUser
+
+        every {
+            writeMileagePort.update(any())
+        } returns expectedUser.mileage
+
+        every {
+            writeMileageHistoryPort.create(any())
+        } returns expectedUser.mileageHistories.last()
+
+        // when
+        val updatedUser = addMileagePointService.addMileagePoint(command)
+
+        // then
+        updatedUser shouldBeEqualToComparingFields expectedUser
+
+        verify(exactly = 2) { readUserPort.findById(userFixture.id!!) }
+        verify(exactly = 1) { writeMileagePort.update(any()) }
+        verify(exactly = 1) { writeMileageHistoryPort.create(any()) }
+    }
 })
