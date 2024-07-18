@@ -10,7 +10,6 @@ import com.raynor.hexagonal.domain.type.id.UserId
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import java.net.URI
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -29,7 +28,7 @@ class UserRestController(
         val command = userCreationRequestDto.toCreateUserUseCaseCommand()
 
         return createUserUseCase.createUser(command).let {
-            ResponseEntity.created(URI.create("/users/${it.id}")).build()
+            ResponseEntity.created(it.getURI()).build()
         }
     }
 
