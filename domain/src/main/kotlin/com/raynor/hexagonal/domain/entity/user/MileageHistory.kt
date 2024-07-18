@@ -39,4 +39,8 @@ class MileageHistory(
     override fun hashCode(): Int {
         return id.hashCode()
     }
+
+    fun id(): MileageHistoryId {
+        return this.id!!
+    }
 }

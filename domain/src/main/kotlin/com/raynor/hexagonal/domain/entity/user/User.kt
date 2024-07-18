@@ -8,6 +8,7 @@ import com.raynor.hexagonal.domain.type.embed.Audit
 import com.raynor.hexagonal.domain.type.embed.UserPersonalInfo
 import com.raynor.hexagonal.domain.type.id.UserId
 import com.raynor.hexagonal.domain.type.personal.UserName
+import java.net.URI
 import java.time.Instant
 
 @RootEntity
@@ -60,6 +61,14 @@ class User(
         mileage = mileage,
         mileageHistories = mileageHistories,
     )
+
+    fun id(): UserId {
+        return this.id!!
+    }
+
+    fun getURI(): URI {
+        return URI.create("/api/v1/users/${this.id().value}")
+    }
 
     fun isActive(): Boolean {
         return this.userStatus == UserStatus.ACTIVE

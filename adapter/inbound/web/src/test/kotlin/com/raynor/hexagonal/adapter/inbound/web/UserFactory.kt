@@ -1,4 +1,4 @@
-package com.raynor.hexagonal.application
+package com.raynor.hexagonal.adapter.inbound.web
 
 import com.raynor.hexagonal.domain.entity.user.Mileage
 import com.raynor.hexagonal.domain.entity.user.User
