@@ -17,7 +17,7 @@ object ProductMapper {
 
     fun toJPAEntity(product: Product): ProductJPAEntity {
         return ProductJPAEntity(
-            id = product.id.value,
+            id = product.id().value,
             name = product.name.value
         )
     }

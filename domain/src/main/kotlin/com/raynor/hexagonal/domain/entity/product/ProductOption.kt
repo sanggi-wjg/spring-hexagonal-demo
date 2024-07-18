@@ -8,14 +8,17 @@ class ProductOption(
     val id: ProductOptionId?,
     val name: ProductOptionName,
     val price: Money,
+    val product: Product
 ) {
     constructor(
         name: ProductOptionName,
         price: Money,
+        product: Product
     ) : this(
         id = null,
         name = name,
         price = price,
+        product = product
     )
 
     override fun equals(other: Any?): Boolean {
@@ -39,6 +42,7 @@ class ProductOption(
     ) = ProductOption(
         id = this.id,
         name = name,
-        price = price
+        price = price,
+        product = this.product,
     )
 }
