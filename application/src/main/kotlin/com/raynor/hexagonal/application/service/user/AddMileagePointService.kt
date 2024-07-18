@@ -17,7 +17,7 @@ class AddMileagePointService(
 
     override fun addMileagePoint(command: AddMileagePointUseCase.Command): User {
         val findUser = readUserPort.findById(command.userId)
-        requireNotNull(findUser) { throw UserNotFoundException(command.userId) }
+            ?: throw UserNotFoundException(command.userId)
 
         val updatedUser = findUser.putMileagePoint(command.mileagePoint, command.message)
         writeMileagePort.update(updatedUser.mileage)

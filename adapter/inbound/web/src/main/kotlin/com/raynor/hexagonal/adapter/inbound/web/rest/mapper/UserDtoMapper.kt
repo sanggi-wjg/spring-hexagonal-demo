@@ -11,7 +11,7 @@ import com.raynor.hexagonal.domain.entity.user.User
 object UserDtoMapper {
 
     fun toUserResponseDto(user: User) = UserResponseDto(
-        id = user.id!!.value,
+        id = user.id().value,
         email = user.personalInfo.email.value,
         name = user.personalInfo.name.value,
         userStatus = user.userStatus,
@@ -20,7 +20,7 @@ object UserDtoMapper {
     )
 
     fun toUserDetailResponseDto(user: User) = UserDetailResponseDto(
-        id = user.id!!.value,
+        id = user.id().value,
         email = user.personalInfo.email.value,
         name = user.personalInfo.name.value,
         userStatus = user.userStatus,
@@ -31,12 +31,12 @@ object UserDtoMapper {
     )
 
     private fun toMileageScheme(mileage: Mileage) = MileageBasicScheme(
-        id = mileage.id!!.value,
+        id = mileage.id().value,
         point = mileage.point.value
     )
 
     private fun toMileageHistoryResponseDto(mileageHistory: MileageHistory) = MileageHistoryBasicScheme(
-        id = mileageHistory.id!!.value,
+        id = mileageHistory.id().value,
         beforePoint = mileageHistory.beforePoint.value,
         afterPoint = mileageHistory.afterPoint.value,
         point = mileageHistory.point,

@@ -14,7 +14,7 @@ class DeleteUserByIdService(
 
     override fun deleteUserById(command: DeleteUserByIdUseCase.Command): Boolean {
         val findUser = readUserPort.findById(command.userId)
-        requireNotNull(findUser) { throw UserNotFoundException(command.userId) }
+            ?: throw UserNotFoundException(command.userId)
 
         writeUserPort.delete(findUser)
         return true

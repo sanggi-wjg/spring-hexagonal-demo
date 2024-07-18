@@ -13,7 +13,7 @@ class ReadUserByIdService(
 
     override fun readById(query: ReadUserByIdUseCase.Query): User {
         val findUser = readUserPort.findById(query.userId)
-        requireNotNull(findUser) { throw UserNotFoundException(query.userId) }
+            ?: throw UserNotFoundException(query.userId)
 
         return findUser
     }

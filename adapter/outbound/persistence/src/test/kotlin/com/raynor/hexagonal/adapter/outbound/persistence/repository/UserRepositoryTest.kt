@@ -45,7 +45,7 @@ class UserRepositoryTest(
         userFactory.deleteAll()
     }
 
-    test("이메일 존재 여부 조회할 수 있어야 한다.") {
+    test("[UserRepositoryTest] 이메일 존재 여부 조회할 수 있어야 한다.") {
         val user = userFactory.create()
 
         userRepository.existsByEmail(user.email) shouldBe true

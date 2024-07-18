@@ -15,7 +15,7 @@ class UpdateUserByIdService(
 
     override fun updateUserById(command: UpdateUserByIdUseCase.Command): User {
         val findUser = readUserPort.findById(command.userId)
-        requireNotNull(findUser) { throw UserNotFoundException(command.userId) }
+            ?: throw UserNotFoundException(command.userId)
 
         return findUser.update(
             inputEmail = command.email,

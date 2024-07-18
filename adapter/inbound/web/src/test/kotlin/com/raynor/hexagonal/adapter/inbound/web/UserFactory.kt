@@ -1,4 +1,4 @@
-package com.raynor.hexagonal.adapter.inbound.web.todo
+package com.raynor.hexagonal.adapter.inbound.web
 
 import com.raynor.hexagonal.domain.entity.user.Mileage
 import com.raynor.hexagonal.domain.entity.user.User
@@ -10,9 +10,9 @@ import com.raynor.hexagonal.domain.type.embed.UserPersonalInfo
 import com.raynor.hexagonal.domain.type.id.MileageId
 import com.raynor.hexagonal.domain.type.id.UserId
 import com.raynor.hexagonal.domain.type.personal.UserName
-import java.time.Instant
 
 object UserFactory {
+    // UserFactory 가 두개 이상의 모듈에서 필요하니 공통 모듈 한개 생성하여 test impl 경우만 추가해도 좋댜.
     private var id = 0
 
     fun create(
@@ -26,10 +26,7 @@ object UserFactory {
                 email = Email("user_$id@dev.com")
             ),
             userStatus = userStatus,
-            audit = Audit(
-                createdAt = Instant.now(),
-                updatedAt = Instant.now()
-            ),
+            audit = Audit.now(),
             mileage = Mileage(
                 id = MileageId(id),
                 point = 0.toPositiveOrZeroInt()

@@ -1,9 +1,9 @@
-package com.raynor.hexagonal.adapter.inbound.web.todo
+package com.raynor.hexagonal.application.service.user
 
 import com.ninjasquad.springmockk.MockkBean
+import com.raynor.hexagonal.application.UserFactory
 import com.raynor.hexagonal.application.port.inbound.usecase.ReadUsersUseCase
 import com.raynor.hexagonal.application.port.outbound.persistence.ReadUserPort
-import com.raynor.hexagonal.application.service.user.ReadUsersService
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.equality.shouldBeEqualToComparingFields
 import io.mockk.clearAllMocks
@@ -11,22 +11,23 @@ import io.mockk.every
 import io.mockk.unmockkAll
 import org.springframework.boot.test.context.SpringBootTest
 
-@SpringBootTest
+@SpringBootTest(
+    classes = [
+        ReadUsersService::class,
+    ]
+)
 class ReadUsersServiceTest(
     private val readUsersService: ReadUsersService,
     @MockkBean private val readUserPort: ReadUserPort,
 ) : FunSpec({
 
-    afterEach {
+    beforeEach {
         unmockkAll()
         clearAllMocks()
     }
 
-    test("전체 유저 조회를 할 수 있어야 한다.") {
+    test("[ReadUsersServiceTest] 유저들을 조회할 수 있어야 한다.") {
         // given
-        val query = ReadUsersUseCase.Query(
-            userIds = null
-        )
         val userFixtures = listOf(
             UserFactory.create(),
             UserFactory.create(),
@@ -34,17 +35,17 @@ class ReadUsersServiceTest(
 
         // mock
         every {
-            readUserPort.findAll(
-                userIds = query.userIds
-            )
+            readUserPort.findAll()
         } returns userFixtures
 
         // when
-        val users = readUsersService.readUsers(query)
+        val query = ReadUsersUseCase.Query(userIds = null)
+        val foundUsers = readUsersService.readUsers(query)
 
         // then
-        users.forEach { user ->
-            user.shouldBeEqualToComparingFields(userFixtures.first { user.id == it.id })
+        foundUsers.forEach { user ->
+            val expect = userFixtures.first { user.id == it.id }
+            user.shouldBeEqualToComparingFields(expect)
         }
     }
 })

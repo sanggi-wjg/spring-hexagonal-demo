@@ -30,4 +30,8 @@ class Mileage(
         id = this.id,
         point = point
     )
+
+    fun id(): MileageId {
+        return this.id!!
+    }
 }
