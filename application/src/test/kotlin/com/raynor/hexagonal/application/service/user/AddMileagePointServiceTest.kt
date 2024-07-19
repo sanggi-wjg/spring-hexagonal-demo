@@ -1,14 +1,14 @@
 package com.raynor.hexagonal.application.service.user
 
 import com.ninjasquad.springmockk.MockkBean
-import com.raynor.hexagonal.application.UserFactory
 import com.raynor.hexagonal.application.port.inbound.usecase.AddMileagePointUseCase
+import com.raynor.hexagonal.application.port.outbound.external.ProduceEventPort
 import com.raynor.hexagonal.application.port.outbound.persistence.ReadUserPort
 import com.raynor.hexagonal.application.port.outbound.persistence.WriteMileageHistoryPort
 import com.raynor.hexagonal.application.port.outbound.persistence.WriteMileagePort
-import com.raynor.hexagonal.application.port.outbound.persistence.WriteUserPort
 import com.raynor.hexagonal.domain.entity.user.Mileage
 import com.raynor.hexagonal.domain.entity.user.MileageHistory
+import com.raynor.hexagonal.domain.test.UserFactory
 import com.raynor.hexagonal.domain.type.common.toPositiveOrZeroInt
 import com.raynor.hexagonal.domain.type.id.MileageHistoryId
 import io.kotest.core.spec.style.FunSpec
@@ -27,9 +27,9 @@ import org.springframework.boot.test.context.SpringBootTest
 class AddMileagePointServiceTest(
     private val addMileagePointService: AddMileagePointService,
     @MockkBean private val readUserPort: ReadUserPort,
-    @MockkBean private val writeUserPort: WriteUserPort,
     @MockkBean private val writeMileagePort: WriteMileagePort,
     @MockkBean private val writeMileageHistoryPort: WriteMileageHistoryPort,
+    @MockkBean private val produceEventPort: ProduceEventPort
 ) : FunSpec({
 
     beforeEach {
@@ -74,6 +74,10 @@ class AddMileagePointServiceTest(
             writeMileageHistoryPort.create(any())
         } returns expectedUser.mileageHistories.last()
 
+        every {
+            produceEventPort.onChangeMileage(any())
+        } returns Unit
+
         // when
         val updatedUser = addMileagePointService.addMileagePoint(command)
 
@@ -83,5 +87,6 @@ class AddMileagePointServiceTest(
         verify(exactly = 2) { readUserPort.findById(userFixture.id!!) }
         verify(exactly = 1) { writeMileagePort.update(any()) }
         verify(exactly = 1) { writeMileageHistoryPort.create(any()) }
+        verify(exactly = 1) { produceEventPort.onChangeMileage(any()) }
     }
 })

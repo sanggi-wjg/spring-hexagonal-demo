@@ -1,11 +1,11 @@
 package com.raynor.hexagonal.application.service.user
 
 import com.ninjasquad.springmockk.MockkBean
-import com.raynor.hexagonal.application.UserFactory
 import com.raynor.hexagonal.application.port.inbound.usecase.UpdateUserByIdUseCase
 import com.raynor.hexagonal.application.port.outbound.persistence.ReadUserPort
 import com.raynor.hexagonal.application.port.outbound.persistence.WriteUserPort
 import com.raynor.hexagonal.domain.enum.UserStatus
+import com.raynor.hexagonal.domain.test.UserFactory
 import com.raynor.hexagonal.domain.type.common.Email
 import com.raynor.hexagonal.domain.type.embed.UserPersonalInfo
 import com.raynor.hexagonal.domain.type.personal.UserName

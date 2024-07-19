@@ -1,10 +1,10 @@
 package com.raynor.hexagonal.application.service.user
 
 import com.ninjasquad.springmockk.MockkBean
-import com.raynor.hexagonal.application.UserFactory
 import com.raynor.hexagonal.application.port.inbound.usecase.ReadUserByIdUseCase
 import com.raynor.hexagonal.application.port.outbound.persistence.ReadUserPort
 import com.raynor.hexagonal.application.service.exception.UserNotFoundException
+import com.raynor.hexagonal.domain.test.UserFactory
 import com.raynor.hexagonal.domain.type.id.UserId
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec

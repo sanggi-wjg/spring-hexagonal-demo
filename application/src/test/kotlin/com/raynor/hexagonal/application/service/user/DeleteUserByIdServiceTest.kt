@@ -1,10 +1,10 @@
 package com.raynor.hexagonal.application.service.user
 
 import com.ninjasquad.springmockk.MockkBean
-import com.raynor.hexagonal.application.UserFactory
 import com.raynor.hexagonal.application.port.inbound.usecase.DeleteUserByIdUseCase
 import com.raynor.hexagonal.application.port.outbound.persistence.ReadUserPort
 import com.raynor.hexagonal.application.port.outbound.persistence.WriteUserPort
+import com.raynor.hexagonal.domain.test.UserFactory
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import io.mockk.clearAllMocks
