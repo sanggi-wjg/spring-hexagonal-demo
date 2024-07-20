@@ -44,7 +44,7 @@ class MileageHistory(
         return this.id!!
     }
 
-    fun textForOnChangeMileageEvent(): String {
+    fun getEventTextForOnChangeMileage(): String {
         return "${beforePoint.value} -> ${afterPoint.value} 적립금 변경."
     }
 }

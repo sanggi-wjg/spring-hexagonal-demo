@@ -3,8 +3,8 @@ package com.raynor.hexagonal.infra.kafka.config
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.boot.context.properties.ConfigurationProperties
 
-@ConditionalOnProperty(prefix = "kafka", name = ["bootstrap-server"])
-@ConfigurationProperties(prefix = "kafka")
+@ConditionalOnProperty(prefix = "infra.kafka", name = ["bootstrap-server"])
+@ConfigurationProperties(prefix = "infra.kafka")
 data class KafkaProperty(
     val bootstrapServer: String,
     val producer: Producer,

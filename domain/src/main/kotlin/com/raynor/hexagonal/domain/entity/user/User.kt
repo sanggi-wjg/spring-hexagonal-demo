@@ -120,4 +120,8 @@ class User(
             mileageHistories = this.mileageHistories + setOf(newHistory)
         )
     }
+
+    fun getEventTextForOnCreate(): String {
+        return "Hello ${this.personalInfo.email.value}!"
+    }
 }

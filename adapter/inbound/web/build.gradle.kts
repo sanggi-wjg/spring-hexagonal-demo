@@ -2,6 +2,7 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":application"))
 
+    runtimeOnly(project(":infra"))
     runtimeOnly(project(":adapter:outbound:external"))
     runtimeOnly(project(":adapter:outbound:persistence"))
 

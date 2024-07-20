@@ -10,12 +10,22 @@ class ProduceEventAdapter(
     private val kafkaProducerService: KafkaProducerService,
 ) : ProduceEventPort {
 
+    override fun onCreate(user: User) {
+        kafkaProducerService.produce(
+            KafkaEvent(
+                KafkaTopic.USER_ON_CREATE_V1,
+                user.id().value.toString(),
+                user.getEventTextForOnCreate()
+            )
+        )
+    }
+
     override fun onChangeMileage(user: User) {
         kafkaProducerService.produce(
             KafkaEvent(
-                KafkaTopic.ON_CHANGE_MILEAGE_V1,
+                KafkaTopic.USER_ON_CHANGE_MILEAGE_V1,
                 user.id().value.toString(),
-                user.mileageHistories.last().textForOnChangeMileageEvent()
+                user.mileageHistories.last().getEventTextForOnChangeMileage(),
             )
         )
     }
