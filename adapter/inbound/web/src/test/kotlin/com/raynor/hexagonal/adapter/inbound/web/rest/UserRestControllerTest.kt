@@ -2,7 +2,6 @@ package com.raynor.hexagonal.adapter.inbound.web.rest
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.ninjasquad.springmockk.MockkBean
-import com.raynor.hexagonal.adapter.inbound.web.UserFactory
 import com.raynor.hexagonal.adapter.inbound.web.config.UseCaseConfig
 import com.raynor.hexagonal.adapter.inbound.web.rest.adapter.UserRestController
 import com.raynor.hexagonal.adapter.inbound.web.rest.dto.request.UserCreationRequestDto
@@ -10,6 +9,7 @@ import com.raynor.hexagonal.adapter.inbound.web.rest.dto.request.UserModificatio
 import com.raynor.hexagonal.adapter.inbound.web.rest.mapper.UserDtoMapper
 import com.raynor.hexagonal.application.port.inbound.usecase.*
 import com.raynor.hexagonal.domain.enum.UserStatus
+import com.raynor.hexagonal.domain.test.UserFactory
 import com.raynor.hexagonal.domain.type.common.Email
 import com.raynor.hexagonal.domain.type.embed.UserPersonalInfo
 import com.raynor.hexagonal.domain.type.personal.UserName
