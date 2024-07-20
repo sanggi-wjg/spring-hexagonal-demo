@@ -19,7 +19,7 @@ class KafkaProducerService(
     @TransactionalEventListener
     private fun publish(event: KafkaEvent) {
         kafkaProducer.send(
-            event.topic.name,
+            event.topic,
             event.key,
             objectMapper.writeValueAsString(event.message)
         )
