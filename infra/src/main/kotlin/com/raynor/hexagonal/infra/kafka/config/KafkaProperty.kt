@@ -10,6 +10,10 @@ data class KafkaProperty(
     val producer: Producer,
     val consumer: Consumer
 ) {
+    companion object {
+        const val GROUP_ID = "com.raynor.hexagonal"
+    }
+
     data class Producer(
         val keySerializer: String,
         val valueSerializer: String,

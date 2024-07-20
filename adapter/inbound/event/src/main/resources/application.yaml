@@ -1,0 +1,21 @@
+server:
+  port: 8082
+
+infra:
+  kafka:
+    bootstrap-server: localhost:9091,localhost:9092,localhost:9093
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        security.protocol: PLAINTEXT
+        acks: all
+        retries: 3
+        compression-type: gzip
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        auto-offset-reset: earliest
+        security.protocol: PLAINTEXT
+        spring.deserializer.value.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
