@@ -8,7 +8,7 @@ import java.time.Instant
 
 @Entity
 @Table(name = "user")
-open class UserJPAEntity(
+class UserJPAEntity(
     id: Int?,
     email: String,
     name: String,
@@ -21,39 +21,39 @@ open class UserJPAEntity(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     var id: Int? = id
-        private set
+        protected set
 
     @Size(max = 254)
     @NotNull
     @Column(name = "email", unique = true, nullable = false, length = 254)
     var email: String = email
-        private set
+        protected set
 
     @Size(max = 150)
     @NotNull
     @Column(name = "name", nullable = false, length = 150)
     var name: String = name
-        private set
+        protected set
 
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "user_status", nullable = false, length = 64)
     var userStatus: UserStatus = userStatus
-        private set
+        protected set
 
     @NotNull
     @Column(name = "created_at", nullable = false)
     var createdAt: Instant = createdAt
-        private set
+        protected set
 
     @NotNull
     @Column(name = "updated_at", nullable = false)
     var updatedAt: Instant = updatedAt
-        private set
+        protected set
 
     @NotNull
     @OneToOne
     @JoinColumn(name = "mileage_id")
     var mileage: MileageJPAEntity = mileage
-        private set
+        protected set
 }

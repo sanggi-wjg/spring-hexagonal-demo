@@ -8,5 +8,5 @@ dependencies {
     implementation("org.springframework:spring-context")
     implementation("org.springframework:spring-tx")
 
-    implementation("org.springframework.kafka:spring-kafka")
+    compileOnly("org.springframework.kafka:spring-kafka")
 }

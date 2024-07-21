@@ -17,22 +17,22 @@ class ProductOptionJPAEntity(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     var id: Int? = id
-        private set
+        protected set
 
     @Size(max = 150)
     @NotNull
     @Column(name = "name", nullable = false, length = 150)
     var name: String = name
-        private set
+        protected set
 
     @NotNull
     @Column(name = "price", nullable = false, precision = 10)
     var price: BigDecimal = price
-        private set
+        protected set
 
     @NotNull
     @ManyToOne
     @JoinColumn(name = "product_id")
     var product: ProductJPAEntity = product
-        private set
+        protected set
 }

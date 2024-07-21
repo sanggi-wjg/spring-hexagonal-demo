@@ -13,12 +13,12 @@ class MileageJPAEntity(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     var id: Int? = id
-        private set
+        protected set
 
     @NotNull
     @Column(name = "point", nullable = false)
     var point: Int = point
-        private set
+        protected set
 
     @OneToMany(mappedBy = "mileage")
     var mileageHistories: MutableList<MileageHistoryJPAEntity> = mutableListOf()

@@ -14,13 +14,13 @@ spring:
     database-platform: org.hibernate.dialect.MySQLDialect
     open-in-view: false
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       use_sql_comments: true
       hibernate:
         default_batch_fetch_size: 50
         show_sql: true
-        format_sql: true
+        format_sql: false
         globally_quoted_identifiers: true
 
 infra:

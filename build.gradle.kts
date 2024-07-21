@@ -42,6 +42,12 @@ subprojects {
         plugin("io.spring.dependency-management")
     }
 
+    allOpen {
+        annotation("jakarta.persistence.Entity")
+        annotation("jakarta.persistence.Embeddable")
+        annotation("jakarta.persistence.MappedSuperclass")
+    }
+
     dependencies {
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
